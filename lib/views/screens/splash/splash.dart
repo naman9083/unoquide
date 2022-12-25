@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/color_palette.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+import '../../../view_models/splash_screen_model.dart';
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashScreenState extends State<SplashScreen> {
+  SplashScreenModel splashViewModel = SplashScreenModel();
+
+  @override
+  void initState() {
+    super.initState();
+    splashViewModel.initiateApp(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme().backgroundColor,
       body: Center(
-        child: Text('Splash'),
+        child: Image.asset('assets/logo.png'),
       ),
     );
   }
