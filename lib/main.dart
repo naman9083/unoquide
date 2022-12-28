@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:unoquide/views/screens/home/homepage.dart';
+import 'package:unoquide/utils/routes/route_names.dart';
+import 'package:unoquide/utils/routes/routes.dart';
 import 'package:unoquide/views/screens/splash/splash.dart';
 
 void main() {
@@ -10,8 +11,7 @@ void main() {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-      overlays: [SystemUiOverlay.bottom]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      initialRoute: RouteNames.splashScreen,
+      onGenerateRoute: Routes.generateRoute,
       theme: ThemeData(
         // This is the theme of your application.
         //
