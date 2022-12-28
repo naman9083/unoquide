@@ -3,10 +3,10 @@
     package="com.astarix.unoquide">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="unoquide"
+        android:label="Uno Guide"
         android:name="${applicationName}"
        android:usesCleartextTraffic="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
        tools:targetApi="m">
         <activity
             android:name=".MainActivity"

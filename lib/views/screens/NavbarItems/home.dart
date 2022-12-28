@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/constants/constants.dart';
+import 'package:unoquide/utils/common/commonItems.dart';
+import 'package:unoquide/views/screens/NavbarItems/notifications.dart';
+import 'package:unoquide/views/screens/NavbarItems/statistics.dart';
+import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,115 +20,67 @@ class _HomeState extends State<Home> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Row(children: [
-            const SizedBox(
-              width: 5,
-            ),
+          const SizedBox(
+            height: 25,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text(
                   'Hello Arnavi !',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: blackColor,
                     fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w700,
+                    fontWeight: bold,
                     fontSize: 40,
                   ),
                 ),
-                Container(
-                  width: 230,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F5CF),
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Class: 3A\nAdmission No: 3288',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Raleway',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    width: 230,
+                    height: 70,
+                    margin: const EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F5CF),
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Class: 3A\nAdmission No: 3288',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: blackColor,
+                          fontFamily: 'Raleway',
+                          fontWeight: bold,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              width: 10,
-            ),
-            Container(
-              height: height * .3,
-              width: width * .3,
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF8F8F866),
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: const Center(
-                child: Text(
-                  'Score 100',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 35,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  'assets/Icons/userpng.png',
-                  height: 120,
-                  width: 120,
-                  fit: BoxFit.fill,
-                )),
-          ]),
-          Row(
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: height * .33,
-                width: width * .25,
-                margin: const EdgeInsets.fromLTRB(10, 40, 20, 0),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: height * .3,
+                width: width * .3,
+                margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: const Color(0xFFF8F8F866),
                   borderRadius: BorderRadius.circular(25),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      const Color(0xFF236BCA),
-                      const Color(0xFF0009D900),
-                    ],
-                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
@@ -133,97 +90,43 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Activites\nCompleted',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'GTN',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                      ),
+                child: const Center(
+                  child: Text(
+                    'Score 100',
+                    style: TextStyle(
+                      color: blackColor,
+                      fontFamily: 'Raleway',
+                      fontWeight: bold,
+                      fontSize: 35,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        const Text(
-                          '70%',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'GTN',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Image.asset(
-                          'assets/Icons/piechart.png',
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'English',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'GTN',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        const Text(
-                          '70%',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'GTN',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Image.asset(
-                          'assets/Icons/piechart.png',
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'Mathematics',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'GTN',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               ),
-              const SizedBox(
-                width: 10,
+            ),
+            InkWell(
+              onTap: () {},
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    'assets/Icons/userpng.png',
+                    height: 120,
+                    width: 120,
+                    fit: BoxFit.fill,
+                  )),
+            ),
+          ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                onTap: () {},
+                child: const StatisticsContainer(
+                  activity: 'Activites\nCompleted',
+                  subject1: 'English',
+                  subject2: 'Mathematics',
+                  percentage1: 70,
+                  percentage2: 80,
+                ),
               ),
               Column(
                 children: [
@@ -247,9 +150,9 @@ class _HomeState extends State<Home> {
                         'Top Subjects',
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: blackColor,
                             fontFamily: 'Raleway',
-                            fontWeight: FontWeight.w700,
+                            fontWeight: bold,
                             fontSize: 30),
                       ),
                     ),
@@ -258,30 +161,40 @@ class _HomeState extends State<Home> {
                     height: 20,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                        height: height * .2,
-                        width: width * .2,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF9B5DE5),
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'English',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'GTN',
-                              fontWeight: FontWeight.w700,
-                              fontSize: 25,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SubjectCourses()));
+                        },
+                        child: Container(
+                          height: height * .2,
+                          width: width * .2,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF9B5DE5),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'English',
+                              style: TextStyle(
+                                color: blackColor,
+                                fontFamily: 'GTN',
+                                fontWeight: bold,
+                                fontSize: 25,
+                              ),
                             ),
                           ),
                         ),
@@ -289,30 +202,39 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         width: 10,
                       ),
-                      Container(
-                        height: height * .2,
-                        width: width * .2,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff2f53bb),
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(0, 3),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SubjectCourses()));
+                        },
+                        child: Container(
+                          height: height * .2,
+                          width: width * .2,
+                          decoration: BoxDecoration(
+                            color: const Color(0xff2f53bb),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Mathematics',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: blackColor,
+                                  fontFamily: 'GTN',
+                                  fontWeight: bold,
+                                  fontSize: 25),
                             ),
-                          ],
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Mathematics',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'GTN',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 25),
                           ),
                         ),
                       ),
@@ -323,83 +245,101 @@ class _HomeState extends State<Home> {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                height: height * .4,
-                width: width * .25,
-                margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                decoration: BoxDecoration(
-                  color: const Color(0xff2f53bb),
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Notifications(),
                     ),
-                  ],
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFFF4D01),
-                      Color(0xFFD9D9D9),
+                  );
+                },
+                child: Container(
+                  height: height * .4,
+                  width: width * .25,
+                  margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff2f53bb),
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFFF4D01),
+                        Color(0xFFD9D9D9),
+                      ],
+                    ),
+                  ),
+                  child: Column(
+                    children: const [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Notifications',
+                        style: TextStyle(
+                          color: whiteColor,
+                          fontFamily: 'GTN',
+                          fontWeight: bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: Text(
+                          '\u2022     Lorem ipsum dolor sit ame. \n'
+                          '\u2022     Sed nisi, adipiscing semper scelerisque\n'
+                          '\u2022     Ac imperdiet vulputate massa in morbi. ',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: blackColor,
+                            fontFamily: 'GTN',
+                            fontSize: 8,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                child: Column(
-                  children: const [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Notifications',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'GTN',
-                        fontWeight: FontWeight.w700,
-                        fontSize: 15,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Center(
-                      child: Text(
-                        '\u2022     Lorem ipsum dolor sit ame. \n'
-                        '\u2022     Sed nisi, adipiscing semper scelerisque\n'
-                        '\u2022     Ac imperdiet vulputate massa in morbi. ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'GTN',
-                          fontSize: 8,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
+              SizedBox(
                 height: height * .8,
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       'Progression Graph',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: blackColor,
                         fontFamily: 'GTN',
-                        fontWeight: FontWeight.w700,
+                        fontWeight: bold,
                         fontSize: 20,
                       ),
                     ),
-                    Image.asset(
-                      'assets/Icons/Line chart.png',
-                      width: width * .5,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Statistics(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/Icons/Line chart.png',
+                        width: width * .5,
+                      ),
                     ),
                   ],
                 ),
