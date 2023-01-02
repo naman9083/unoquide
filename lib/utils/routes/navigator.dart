@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence.dart';
+import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
+import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
 import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
 
-import '../../views/screens/NavbarItems/AudioVideo.dart';
-import '../../views/screens/NavbarItems/home.dart';
-import '../../views/screens/NavbarItems/myProfile.dart';
-import '../../views/screens/NavbarItems/statistics&Report.dart';
+import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
+import '../../views/screens/NavbarItems/Home/home.dart';
+import '../../views/screens/NavbarItems/Profile/myProfile.dart';
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator(
@@ -21,11 +21,13 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == 'Home') {
       child = const Home();
     } else if (tabItem == 'SubjectCourses') {
-      child = const SubjectCourses();
+      child = SubjectCourses(
+        screenIndex: 0,
+      );
     } else if (tabItem == 'AudioVideo') {
       child = const AudioVideo();
     } else if (tabItem == 'StatisticsReports') {
-      child = const StatisticsReports();
+      child = const Connect();
     } else if (tabItem == 'MyProfile') {
       child = const MyProfile();
     } else {

@@ -168,8 +168,9 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const SubjectCourses()));
+                                  builder: (context) => SubjectCourses(
+                                        screenIndex: 0,
+                                      )));
                         },
                         child: Container(
                           height: height * .2,
@@ -207,8 +208,9 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const SubjectCourses()));
+                                  builder: (context) => SubjectCourses(
+                                        screenIndex: 0,
+                                      )));
                         },
                         child: Container(
                           height: height * .2,

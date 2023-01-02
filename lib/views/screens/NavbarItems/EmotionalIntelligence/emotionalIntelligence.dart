@@ -5,7 +5,7 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../constants/constants.dart';
 
 class EmotionalIntelligence extends StatefulWidget {
   const EmotionalIntelligence({Key? key}) : super(key: key);
