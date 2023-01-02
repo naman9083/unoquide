@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
+
 import 'package:unoquide/views/screens/NavbarItems/AudioVideo/Recorded.dart';
 import 'package:unoquide/views/screens/NavbarItems/AudioVideo/visuals.dart';
-import 'package:unoquide/views/screens/NavbarItems/test.dart';
+
+import 'package:unoquide/views/screens/NavbarItems/subjectResource.dart';
 
 import '../../../constants/constants.dart';
 

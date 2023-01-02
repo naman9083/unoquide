@@ -77,33 +77,33 @@ class _JoinMeetingState extends State<JoinMeeting> {
   //   _searchController.addListener(_handleSearchChange);
   // }
   //
-  Future<void> _joinRoom(
-      Meeting meeting, bool isHost, Function setState) async {
-    try {
-      setState(() {
-        isLoading = true;
-      });
-      //Note usage of mode here
-      var authToken = await DyteAPI.createParticipant(meeting, isHost,
-          widget.mode == Mode.webinar ? true : false, participantName);
-      setState(() {
-        isLoading = false;
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => DyteMeetingPage(
-                  roomName: meeting.roomName!,
-                  authToken: authToken,
-                  mode: widget.mode,
-                )),
-      );
-    } on APIFailureException {
-      setState(() {
-        isErroredState = true;
-      });
-    }
-  }
+  // Future<void> _joinRoom(
+  //     Meeting meeting, bool isHost, Function setState) async {
+  //   try {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
+  //     //Note usage of mode here
+  //     var authToken = await DyteAPI.createParticipant(meeting, isHost,
+  //         widget.mode == Mode.webinar ? true : false, participantName);
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => DyteMeetingPage(
+  //                 roomName: meeting.roomName!,
+  //                 authToken: authToken,
+  //                 mode: widget.mode,
+  //               )),
+  //     );
+  //   } on APIFailureException {
+  //     setState(() {
+  //       isErroredState = true;
+  //     });
+  //   }
+  // }
   //
   // Future<void> _showMeetingDialog(Meeting meeting) async {
   //   return showDialog<void>(

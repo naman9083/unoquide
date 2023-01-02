@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/personalItem.dart';
-import 'package:unoquide/views/screens/NavbarItems/test.dart';
 
 class PersonalInfo extends StatefulWidget {
   const PersonalInfo({Key? key}) : super(key: key);
