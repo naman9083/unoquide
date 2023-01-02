@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/views/screens/NavbarItems/statistics.dart';
 
-import '../../../utils/common/commonItems.dart';
+import '../../../../utils/common/commonItems.dart';
 
 class StatisticsReports extends StatefulWidget {
   const StatisticsReports({Key? key}) : super(key: key);

@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
+
+import 'package:unoquide/views/screens/NavbarItems/AudioVideo/Recorded.dart';
+import 'package:unoquide/views/screens/NavbarItems/AudioVideo/visuals.dart';
+
 import 'package:unoquide/views/screens/NavbarItems/subjectResource.dart';
 
 import '../../../constants/constants.dart';
 
 class SubjectCourses extends StatefulWidget {
-  const SubjectCourses({Key? key}) : super(key: key);
-
+  SubjectCourses({Key? key, required this.screenIndex}) : super(key: key);
+  int screenIndex = 0;
   @override
-  State<SubjectCourses> createState() => _SubjectCoursesState();
+  State<SubjectCourses> createState() => _SubjectCoursesState(screenIndex);
 }
 
+//
 class _SubjectCoursesState extends State<SubjectCourses> {
-  Function onTap = (String subjectName, BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => Test(subjectName: subjectName),
-      ),
-    );
+  int screenIndex;
+  _SubjectCoursesState(this.screenIndex);
+  Function onTap = (String subjectName, BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Test(
+                subjectName: subjectName,
+              )));
+    } else if (index == 1) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Visuals(
+                subjectName: subjectName,
+              )));
+    } else {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const Recorded()));
+    }
   };
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -39,7 +55,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                 imgUrl: 'assets/Images/Courses/english.png',
                 text: "English",
                 onTap: () {
-                  onTap("English", context);
+                  onTap("English", context, screenIndex);
                 }),
             ImageTextClickableContainer(
                 width: width * .3,
@@ -47,7 +63,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                 imgUrl: 'assets/Images/Courses/hindi.png',
                 text: "Hindi",
                 onTap: () {
-                  onTap('Hindi', context);
+                  onTap("Hindi", context, screenIndex);
                 }),
           ],
         ),
@@ -63,7 +79,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                 imgUrl: 'assets/Images/Courses/maths.png',
                 text: "Maths",
                 onTap: () {
-                  onTap('Maths', context);
+                  onTap("Maths", context, screenIndex);
                 }),
             ImageTextClickableContainer(
                 width: width * .3,
@@ -71,7 +87,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                 imgUrl: 'assets/Images/Courses/evs.png',
                 text: "Environmental\nStudies",
                 onTap: () {
-                  onTap('Environmental Studies', context);
+                  onTap("Environmental Studies", context, screenIndex);
                 }),
           ],
         ),

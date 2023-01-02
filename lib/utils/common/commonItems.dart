@@ -16,6 +16,7 @@ class RailIconImage extends StatelessWidget {
       children: [
         Image.asset(
           imgUrl,
+          color: Colors.white,
           height: size,
           width: size,
         ),

@@ -9,3 +9,10 @@ const redAccent = Color(0xffEE0E29);
 const FontWeight bold = FontWeight.w700;
 const FontWeight bold2 = FontWeight.w900;
 const FontWeight bold3 = FontWeight.w900;
+String baseURL = "https://api.cluster.dyte.in/v1";
+
+enum Mode {
+  groupCall,
+  webinar,
+  customControls,
+}

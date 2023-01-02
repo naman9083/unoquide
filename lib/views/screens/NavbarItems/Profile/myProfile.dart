@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
-import 'package:unoquide/views/screens/NavbarItems/personalInfo.dart';
-import 'package:unoquide/views/screens/NavbarItems/statistics&Report.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/personalInfo.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/statistics&Report.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);

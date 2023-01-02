@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 
-import '../../../constants/constants.dart';
+import '../subjectCourses.dart';
 
 class AudioVideo extends StatefulWidget {
   const AudioVideo({Key? key}) : super(key: key);
@@ -30,13 +30,31 @@ class _AudioVideoState extends State<AudioVideo> {
                 height: height * .4,
                 imgUrl: 'assets/Images/AudioVisuals/av.png',
                 text: "Audio Visual",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SubjectCourses(
+                        screenIndex: 1,
+                      ),
+                    ),
+                  );
+                }),
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
                 imgUrl: 'assets/Images/AudioVisuals/recorded.png',
                 text: "Recorded\nSessions",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SubjectCourses(
+                        screenIndex: 2,
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
       ]),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
-import 'package:unoquide/views/screens/NavbarItems/AudioVideo.dart';
-import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence.dart';
-import 'package:unoquide/views/screens/NavbarItems/home.dart';
-import 'package:unoquide/views/screens/NavbarItems/myProfile.dart';
-import 'package:unoquide/views/screens/NavbarItems/statistics&Report.dart';
+import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
+import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
+import 'package:unoquide/views/screens/NavbarItems/Home/home.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/myProfile.dart';
 import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
 
 import '../../../utils/routes/navigator.dart';
+import '../NavbarItems/AudioVideo/AudioVideo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,9 +21,11 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     const EmotionalIntelligence(),
     const Home(),
-    const SubjectCourses(),
+    SubjectCourses(
+      screenIndex: 0,
+    ),
     const AudioVideo(),
-    const StatisticsReports(),
+    const Connect(),
     const MyProfile(),
   ];
   int _selectedIndex = 1;
@@ -182,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                           selectTab(4);
                         },
                         child: const RailIconImage(
-                            label: 'Statistics/\nReportCard',
+                            label: 'Connect',
                             imgUrl: 'assets/Icons/exam.png',
                             size: 25),
                       ),
