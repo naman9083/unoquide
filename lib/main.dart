@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: RouteNames.categoryLoginScreen,
+      initialRoute: RouteNames.splashScreen,
       onGenerateRoute: Routes.generateRoute,
       theme: ThemeData(
         // This is the theme of your application.

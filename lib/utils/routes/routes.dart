@@ -4,6 +4,7 @@ import 'package:unoquide/views/screens/authentication/student_login.dart';
 import 'package:unoquide/views/screens/home/homepage.dart';
 
 import '../../views/screens/authentication/category_login.dart';
+import '../../views/screens/authentication/parent_login.dart';
 import '../../views/screens/authentication/teacher_login.dart';
 import '../../views/screens/errorScreens/error_screen.dart';
 import '../../views/screens/splash/splash.dart';
@@ -34,6 +35,10 @@ class Routes {
       case RouteNames.teacherLoginScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => const TeacherLogin());
+
+      case RouteNames.parentLoginScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const ParentLogin());
 
       default:
         return MaterialPageRoute(
