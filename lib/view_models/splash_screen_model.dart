@@ -17,6 +17,6 @@ class SplashScreenModel {
     await Future.delayed(const Duration(milliseconds: 2000));
 
     Navigator.pushNamedAndRemoveUntil(
-        context, RouteNames.categoryLoginScreen, (route) => false);
+        context, RouteNames.studentLoginScreen, (route) => false);
   }
 }

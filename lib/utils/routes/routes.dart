@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/routes/route_names.dart';
+import 'package:unoquide/views/screens/authentication/student_login.dart';
 import 'package:unoquide/views/screens/home/homepage.dart';
 
 import '../../views/screens/authentication/category_login.dart';
@@ -24,6 +25,10 @@ class Routes {
       case RouteNames.homeScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomePage());
+
+      case RouteNames.studentLoginScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const StudentLogin());
 
       default:
         return MaterialPageRoute(

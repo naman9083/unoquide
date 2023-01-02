@@ -20,7 +20,7 @@ class _CategoryLoginScreenState extends State<CategoryLoginScreen> {
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/Images/category_login_background.png')
+            image: AssetImage('assets/Images/Authentication/category_login_background.png')
           )
         ),
         child: Center(
