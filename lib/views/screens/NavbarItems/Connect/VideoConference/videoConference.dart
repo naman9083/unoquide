@@ -33,11 +33,11 @@ class _VideoConferenceState extends State<VideoConference> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const JoinMeeting(),
-                  ),
-                );
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) => const JoinMeeting(),
+                //   ),
+                // );
               },
               child: Container(
                 width: 200,

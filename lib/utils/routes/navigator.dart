@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
-import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
 import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
 import '../../views/screens/NavbarItems/Home/home.dart';
