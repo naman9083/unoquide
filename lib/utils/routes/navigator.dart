@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
+import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
 import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
@@ -30,6 +31,9 @@ class TabNavigator extends StatelessWidget {
       child = const Connect();
     } else if (tabItem == 'MyProfile') {
       child = const MyProfile();
+    }
+    else if (tabItem == 'Games') {
+      child = const Games();
     } else {
       child = const Center(child: Text('Settings'));
     }

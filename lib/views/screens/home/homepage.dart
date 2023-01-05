@@ -3,6 +3,7 @@ import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
+import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/NavbarItems/Home/home.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/myProfile.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
     SubjectCourses(
       screenIndex: 0,
     ),
+    const Games(),
     const AudioVideo(),
     const Connect(),
     const MyProfile(),
@@ -34,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     'EQ',
     'Home',
     'SubjectCourses',
+    'Games',
     'AudioVideo',
     'StatisticsReports',
     'MyProfile',
@@ -42,6 +45,7 @@ class _HomePageState extends State<HomePage> {
     'EQ': GlobalKey<NavigatorState>(),
     'Home': GlobalKey<NavigatorState>(),
     'SubjectCourses': GlobalKey<NavigatorState>(),
+    'Games': GlobalKey<NavigatorState>(),
     'AudioVideo': GlobalKey<NavigatorState>(),
     'StatisticsReports': GlobalKey<NavigatorState>(),
     'MyProfile': GlobalKey<NavigatorState>(),
@@ -158,7 +162,9 @@ class _HomePageState extends State<HomePage> {
                             size: 25),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          selectTab(3);
+                        },
                         child: const RailIconImage(
                             label: 'Games/\nInteractive Courses',
                             imgUrl: 'assets/Icons/games.png',
@@ -169,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       InkWell(
                         onTap: () {
-                          selectTab(3);
+                          selectTab(4);
                         },
                         child: const RailIconImage(
                             label: 'Audio Visual\nContent',
@@ -181,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       InkWell(
                         onTap: () {
-                          selectTab(4);
+                          selectTab(5);
                         },
                         child: const RailIconImage(
                             label: 'Connect',
@@ -203,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       InkWell(
                         onTap: () {
-                          selectTab(5);
+                          selectTab(6);
                         },
                         child: const RailIconImage(
                             label: 'My Profile',
@@ -227,6 +233,7 @@ class _HomePageState extends State<HomePage> {
                 _buildOffstageNavigator('EQ'),
                 _buildOffstageNavigator('Home'),
                 _buildOffstageNavigator('SubjectCourses'),
+                _buildOffstageNavigator('Games'),
                 _buildOffstageNavigator('AudioVideo'),
                 _buildOffstageNavigator('StatisticsReports'),
                 _buildOffstageNavigator('MyProfile'),

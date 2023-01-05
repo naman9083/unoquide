@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/routes/route_names.dart';
+import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/authentication/student_login.dart';
 import 'package:unoquide/views/screens/home/homepage.dart';
 
@@ -39,6 +40,10 @@ class Routes {
       case RouteNames.parentLoginScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => const ParentLogin());
+
+      case RouteNames.gamesScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const Games());
 
       default:
         return MaterialPageRoute(
