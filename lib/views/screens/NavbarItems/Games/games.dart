@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
+import '../../../../constants/constants.dart';
 
 class Games extends StatefulWidget {
   const Games({Key? key}) : super(key: key);
@@ -25,38 +25,34 @@ class _GamesState extends State<Games> {
         child: Column(
           children: [
             gamesWidget(
-                width: MediaQuery.of(context).size.width*0.5,
-                height: MediaQuery.of(context).size.height*0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: MediaQuery.of(context).size.height * 0.5,
                 imgUrl: "assets/Images/Games/maths_01.png",
                 text: 'Maths',
-                onTap: () {}
-            ),
+                onTap: () {}),
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   gamesWidget(
-                      width: MediaQuery.of(context).size.height*0.4,
-                      height: MediaQuery.of(context).size.height*0.35,
+                      width: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.35,
                       imgUrl: "assets/Images/Games/maths_02.png",
                       text: 'Maths',
-                      onTap: () {}
-                  ),
+                      onTap: () {}),
                   gamesWidget(
-                      width: MediaQuery.of(context).size.height*0.4,
-                      height: MediaQuery.of(context).size.height*0.35,
+                      width: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.35,
                       imgUrl: "assets/Images/Games/english_01.png",
                       text: 'English',
-                      onTap: () {}
-                  ),
+                      onTap: () {}),
                   gamesWidget(
-                      width: MediaQuery.of(context).size.height*0.4,
-                      height: MediaQuery.of(context).size.height*0.35,
+                      width: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.35,
                       imgUrl: "assets/Images/Games/english_02.png",
                       text: 'English',
-                      onTap: () {}
-                  ),
+                      onTap: () {}),
                 ],
               ),
             ),
@@ -70,11 +66,11 @@ class _GamesState extends State<Games> {
 class gamesWidget extends StatelessWidget {
   const gamesWidget(
       {Key? key,
-        required this.width,
-        required this.height,
-        required this.imgUrl,
-        required this.text,
-        required this.onTap})
+      required this.width,
+      required this.height,
+      required this.imgUrl,
+      required this.text,
+      required this.onTap})
       : super(key: key);
   final double height;
   final double width;
@@ -94,11 +90,11 @@ class gamesWidget extends StatelessWidget {
             width: width,
             height: height,
             decoration: BoxDecoration(
-              // image: DecorationImage(
-              //   image: AssetImage(imgUrl),
-              //   fit: BoxFit.cover,
-              // ),
-            ),
+                // image: DecorationImage(
+                //   image: AssetImage(imgUrl),
+                //   fit: BoxFit.cover,
+                // ),
+                ),
             child: Image.asset(imgUrl),
           ),
           Text(

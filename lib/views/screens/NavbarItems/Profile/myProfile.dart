@@ -22,7 +22,7 @@ class _MyProfileState extends State<MyProfile> {
           ImageTextClickableContainer(
               width: width * .3,
               height: height * .4,
-              imgUrl: "assets/Images/personal.png",
+              imgUrl: "assets/Images/Stats/personal.png",
               text: "Personal Info",
               onTap: () {
                 Navigator.push(
@@ -33,7 +33,7 @@ class _MyProfileState extends State<MyProfile> {
           ImageTextClickableContainer(
               width: width * .3,
               height: height * .4,
-              imgUrl: "assets/Images/subject.png",
+              imgUrl: "assets/Images/Stats/subject.png",
               text: "Subject Info",
               onTap: () {}),
         ]),
@@ -41,13 +41,13 @@ class _MyProfileState extends State<MyProfile> {
           ImageTextClickableContainer(
               width: width * .3,
               height: height * .4,
-              imgUrl: "assets/Images/documents.png",
+              imgUrl: "assets/Images/Stats/documents.png",
               text: "My Documents",
               onTap: () {}),
           ImageTextClickableContainer(
               width: width * .3,
               height: height * .4,
-              imgUrl: "assets/Images/report.png",
+              imgUrl: "assets/Images/Stats/report.png",
               text: "Statistics &\nReport Card",
               onTap: () {
                 Navigator.push(

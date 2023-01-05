@@ -15,6 +15,14 @@ class EmotionalIntelligence extends StatefulWidget {
 }
 
 class _EmotionalIntelligenceState extends State<EmotionalIntelligence> {
+  Function onTap = (BuildContext context, String videoId, String title) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => PDFIframe(
+              videoID: videoId,
+              pdfUrl: title,
+            )));
+  };
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -80,28 +88,26 @@ class _EmotionalIntelligenceState extends State<EmotionalIntelligence> {
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/stress 1.png',
+                imgUrl: 'assets/Images/EmotionalIntelligence/stress 1.png',
                 text: "Stress\nManagement",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: 'mtRrxNTnyh8',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/Stress.0bd0ad1647a7b50f7a24.pdf',
-                          )));
+                  onTap(
+                    context,
+                    'mtRrxNTnyh8',
+                    'http://ug.uno-guide.com/static/media/Stress.0bd0ad1647a7b50f7a24.pdf',
+                  );
                 }),
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/Motivation.png',
+                imgUrl: 'assets/Images/EmotionalIntelligence/Motivation.png',
                 text: "Motivation",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: 'domCDwp5u3I',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/Motivation.b95399ae27926f172e24.pdf',
-                          )));
+                  onTap(
+                    context,
+                    'domCDwp5u3I',
+                    'http://ug.uno-guide.com/static/media/Motivation.b95399ae27926f172e24.pdf',
+                  );
                 }),
           ],
         ),
@@ -111,28 +117,24 @@ class _EmotionalIntelligenceState extends State<EmotionalIntelligence> {
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/Rectangle 24.png',
+                imgUrl: 'assets/Images/EmotionalIntelligence/Rectangle 24.png',
                 text: "Empathy",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: '5ZF9DWBqNQU',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/Empathy.da0d6d2a265770c07589.pdf',
-                          )));
+                  onTap(
+                    context,
+                    '5ZF9DWBqNQU',
+                    'http://ug.uno-guide.com/static/media/Empathy.da0d6d2a265770c07589.pdf',
+                  );
                 }),
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/self awareness 1.png',
+                imgUrl:
+                    'assets/Images/EmotionalIntelligence/self awareness 1.png',
                 text: "Self\nAwareness",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: 'HIhEMk7CZ-A',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/SelfAwareness.601750fa3bf185f62565.pdf',
-                          )));
+                  onTap(context, 'HIhEMk7CZ-A',
+                      'http://ug.uno-guide.com/static/media/SelfAwareness.601750fa3bf185f62565.pdf');
                 }),
           ],
         ),
@@ -142,28 +144,23 @@ class _EmotionalIntelligenceState extends State<EmotionalIntelligence> {
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/Rectangle 27.png',
-                text: "Optimism",
+                imgUrl: 'assets/Images/EmotionalIntelligence/Rectangle 27.png',
+                text: "Hope",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: '1P3ZgLOy-w8',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/Hope.38281905f83cdc161fe3.pdf',
-                          )));
+                  onTap(
+                    context,
+                    '1P3ZgLOy-w8',
+                    'http://ug.uno-guide.com/static/media/Hope.38281905f83cdc161fe3.pdf',
+                  );
                 }),
             ImageTextClickableContainer(
                 width: width * .3,
                 height: height * .4,
-                imgUrl: 'assets/Images/compassion 1.png',
+                imgUrl: 'assets/Images/EmotionalIntelligence/compassion 1.png',
                 text: "Compassion",
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PDFIframe(
-                            videoID: '38y_1EWIE9I',
-                            pdfUrl:
-                                'http://ug.uno-guide.com/static/media/Compassion.4990cda0a78e31e80aea.pdf',
-                          )));
+                  onTap(context, '38y_1EWIE9I',
+                      'http://ug.uno-guide.com/static/media/Compassion.4990cda0a78e31e80aea.pdf');
                 }),
           ],
         ),

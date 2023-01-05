@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
-import 'package:unoquide/views/screens/NavbarItems/notifications.dart';
-import 'package:unoquide/views/screens/NavbarItems/statistics.dart';
-import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/notifications.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/statistics.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

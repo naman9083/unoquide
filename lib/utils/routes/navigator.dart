@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
-import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
+import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
 import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
 import '../../views/screens/NavbarItems/Home/home.dart';
 import '../../views/screens/NavbarItems/Profile/myProfile.dart';
-import '../../views/screens/NavbarItems/games.dart';
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator(

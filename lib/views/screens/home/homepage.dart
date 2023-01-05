@@ -3,13 +3,13 @@ import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
+import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/NavbarItems/Home/home.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/myProfile.dart';
-import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
 import '../../../utils/routes/navigator.dart';
 import '../NavbarItems/AudioVideo/AudioVideo.dart';
-import '../NavbarItems/games.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

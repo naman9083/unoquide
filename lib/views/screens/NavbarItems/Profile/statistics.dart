@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
-import '../../../utils/common/commonItems.dart';
+import '../../../../constants/constants.dart';
+import '../../../../utils/common/commonItems.dart';
 
 class Statistics extends StatefulWidget {
   const Statistics({Key? key}) : super(key: key);

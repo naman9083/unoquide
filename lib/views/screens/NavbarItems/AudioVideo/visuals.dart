@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class Visuals extends StatefulWidget {
   final String subjectName;
@@ -12,12 +12,12 @@ class Visuals extends StatefulWidget {
 }
 
 class _VisualsState extends State<Visuals> {
-  final YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: '0LXACUqRUWo',
-    flags: const YoutubePlayerFlags(
-      hideControls: false,
-      controlsVisibleAtStart: true,
-      autoPlay: true,
+  final YoutubePlayerController _controller =
+      YoutubePlayerController.fromVideoId(
+    videoId: '0LXACUqRUWo',
+    params: const YoutubePlayerParams(
+      showControls: true,
+      showFullscreenButton: true,
       mute: false,
     ),
   );
@@ -70,30 +70,8 @@ class _VisualsState extends State<Visuals> {
         Center(
           child: SizedBox(
             height: height * .5,
-            width: width * .4,
-            child: YoutubePlayer(
-              controller: YoutubePlayerController(
-                initialVideoId: videoList[0],
-                flags: const YoutubePlayerFlags(
-                  hideControls: false,
-                  controlsVisibleAtStart: true,
-                  autoPlay: true,
-                  mute: false,
-                ),
-              ),
-              bufferIndicator: const Center(
-                child: CircularProgressIndicator(),
-              ),
-              showVideoProgressIndicator: true,
-              progressIndicatorColor: Colors.blueAccent,
-              progressColors: const ProgressBarColors(
-                playedColor: Colors.blueAccent,
-                handleColor: Colors.blueAccent,
-              ),
-              onReady: () {
-                print('Player is ready.');
-              },
-            ),
+            width: width * .6,
+            child: YoutubePlayer(controller: _controller),
           ),
         ),
         const SizedBox(
@@ -110,8 +88,8 @@ class _VisualsState extends State<Visuals> {
                   index: index,
                   onTap: () {
                     setState(() {
-                      _controller.load(videoList[index], startAt: 0);
-                      _controller.play();
+                      _controller.loadVideoById(videoId: videoList[index]);
+                      _controller.playVideo();
                     });
                   });
             }),

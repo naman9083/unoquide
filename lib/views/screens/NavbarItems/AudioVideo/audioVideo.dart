@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 
-import '../subjectCourses.dart';
+import '../Subject/subjectCourses.dart';
 
 class AudioVideo extends StatefulWidget {
   const AudioVideo({Key? key}) : super(key: key);

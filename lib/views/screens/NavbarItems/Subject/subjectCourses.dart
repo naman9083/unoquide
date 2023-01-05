@@ -3,10 +3,7 @@ import 'package:unoquide/utils/common/commonItems.dart';
 
 import 'package:unoquide/views/screens/NavbarItems/AudioVideo/Recorded.dart';
 import 'package:unoquide/views/screens/NavbarItems/AudioVideo/visuals.dart';
-
-import 'package:unoquide/views/screens/NavbarItems/subjectResource.dart';
-
-import '../../../constants/constants.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/subjectResource.dart';
 
 class SubjectCourses extends StatefulWidget {
   SubjectCourses({Key? key, required this.screenIndex}) : super(key: key);

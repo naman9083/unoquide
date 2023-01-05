@@ -64,7 +64,8 @@ class _ConnectState extends State<Connect> {
               imgUrl: 'assets/Images/Connect/examination.png',
               text: "Examination",
               onTap: () {
-                _launchURLApp("https://assessment.eklavvya.com/");
+                launchUrl(Uri.parse("https://assessment.eklavvya.com/"),
+                    mode: LaunchMode.externalApplication);
               },
             ),
             SizedBox(
