@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
-import 'package:unoquide/views/screens/NavbarItems/statistics.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/statistics.dart';
 
 import '../../../../utils/common/commonItems.dart';
 
@@ -22,7 +22,7 @@ class _StatisticsReportsState extends State<StatisticsReports> {
         ImageTextClickableContainer(
             width: width * .3,
             height: height * .4,
-            imgUrl: "assets/Images/comp.png",
+            imgUrl: "assets/Images/Stats/report.png",
             text: "Statistics",
             onTap: () {
               Navigator.push(context,
@@ -31,7 +31,7 @@ class _StatisticsReportsState extends State<StatisticsReports> {
         ImageTextClickableContainer(
             width: width * .3,
             height: height * .4,
-            imgUrl: "assets/Images/draw.png",
+            imgUrl: "assets/Images/Stats/draw.png",
             text: "Report Card",
             onTap: () {
               Navigator.push(
