@@ -7,4 +7,5 @@ class RouteNames {
   static const String studentLoginScreen = "/studentLoginScreen";
   static const String teacherLoginScreen = "/teacherLoginScreen";
   static const String parentLoginScreen = "/parentLoginScreen";
+  static const String gamesScreen = "/gamesScreen";
 }

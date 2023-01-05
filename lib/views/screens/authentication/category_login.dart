@@ -60,33 +60,9 @@ class _CategoryLoginScreenState extends State<CategoryLoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Element('School'),
                           Element('Teacher'),
                           Element('Student'),
                           Element('Parent'),
-                          GestureDetector(
-                            onTap: () {
-                              /// TODO: Implement Tap
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 15),
-                              width: MediaQuery.of(context).size.width * 0.20,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 48, 38, 38),
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: const AutoSizeText(
-                                'Register',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),

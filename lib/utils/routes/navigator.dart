@@ -6,6 +6,7 @@ import 'package:unoquide/views/screens/NavbarItems/subjectCourses.dart';
 import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
 import '../../views/screens/NavbarItems/Home/home.dart';
 import '../../views/screens/NavbarItems/Profile/myProfile.dart';
+import '../../views/screens/NavbarItems/games.dart';
 
 class TabNavigator extends StatelessWidget {
   const TabNavigator(
@@ -30,6 +31,9 @@ class TabNavigator extends StatelessWidget {
       child = const Connect();
     } else if (tabItem == 'MyProfile') {
       child = const MyProfile();
+    }
+    else if (tabItem == 'Games') {
+      child = const Games();
     } else {
       child = const Center(child: Text('Settings'));
     }
