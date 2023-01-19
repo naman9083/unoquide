@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/shared-services.dart';
+import 'package:unoquide/services/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../config/color_palette.dart';
 
@@ -11,6 +14,28 @@ class StudentLogin extends StatefulWidget {
 }
 
 class _StudentLoginState extends State<StudentLogin> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String? authToken;
+  bool isVisible = false;
+  studentLogin() async {
+    if (_emailController.text != null && _passwordController.text != null) {
+      var response =
+          await student_login(_emailController.text, _passwordController.text);
+      authToken = response.token!.split(" ")[1];
+      putTokenToGlobal(token: authToken);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please enter your credentials",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +82,14 @@ class _StudentLoginState extends State<StudentLogin> {
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.30,
-                                height: 30,
+                                height: 40,
                                 decoration: BoxDecoration(
                                     color: const Color.fromARGB(
                                         255, 217, 217, 217),
                                     borderRadius: BorderRadius.circular(30)),
                                 child: Container(
                                   child: TextFormField(
+                                    controller: _emailController,
                                     decoration: InputDecoration(
                                         contentPadding: const EdgeInsets.only(
                                             top: 2, left: 65),
@@ -85,36 +111,54 @@ class _StudentLoginState extends State<StudentLogin> {
                               ),
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.30,
-                                height: 30,
+                                height: 40,
                                 decoration: BoxDecoration(
                                     color: const Color.fromARGB(
                                         255, 217, 217, 217),
                                     borderRadius: BorderRadius.circular(30)),
-                                child: Container(
-                                  child: TextFormField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: const EdgeInsets.only(
-                                            top: 2, left: 65),
-                                        hintStyle: const TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,
-                                        ),
-                                        hintText: 'Password',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0))),
-                                  ),
+                                child: TextFormField(
+                                  obscureText: isVisible,
+                                  controller: _passwordController,
+                                  decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        icon: isVisible
+                                            ? const Icon(Icons.visibility_off)
+                                            : const Icon(Icons.visibility),
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                          });
+                                        },
+                                      ),
+                                      contentPadding: const EdgeInsets.only(
+                                          top: 2, left: 65),
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                      ),
+                                      hintText: 'Password',
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0))),
                                 ),
                               ),
                             ],
                           ),
                           GestureDetector(
                             onTap: () {
+                              studentLogin();
                               Navigator.pushNamedAndRemoveUntil(
                                   context, '/home', (route) => false);
+                              Fluttertoast.showToast(
+                                  msg: "Login Successful",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.green,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
                             },
                             child: Container(
                               margin: const EdgeInsets.only(top: 15),
