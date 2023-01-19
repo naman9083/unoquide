@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:unoquide/config/shared-services.dart';
+import 'package:unoquide/services/login.dart';
 
 import '../../../config/color_palette.dart';
 
@@ -11,6 +14,28 @@ class TeacherLogin extends StatefulWidget {
 }
 
 class _TeacherLoginState extends State<TeacherLogin> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String? authToken;
+  bool isVisible = false;
+  teacherLogin() async {
+    if (_emailController.text != null && _passwordController.text != null) {
+      var response =
+          await teacher_login(_emailController.text, _passwordController.text);
+      authToken = response.token!.split(" ")[1];
+      putTokenToGlobal(token: authToken);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please enter your credentials",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +88,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                                         255, 217, 217, 217),
                                     borderRadius: BorderRadius.circular(30)),
                                 child: TextFormField(
+                                  controller: _emailController,
                                   decoration: InputDecoration(
                                       contentPadding: const EdgeInsets.only(
                                           top: 2, left: 65),
@@ -90,7 +116,21 @@ class _TeacherLoginState extends State<TeacherLogin> {
                                     borderRadius: BorderRadius.circular(30)),
                                 child: TextFormField(
                                   obscureText: true,
+                                  controller: _passwordController,
                                   decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          isVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: Colors.black,
+                                        ),
+                                      ),
                                       contentPadding: const EdgeInsets.only(
                                           top: 2, left: 65),
                                       hintStyle: const TextStyle(
@@ -109,8 +149,11 @@ class _TeacherLoginState extends State<TeacherLogin> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/home', (route) => false);
+                              teacherLogin();
+                              if (authToken != null) {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, 'home', (route) => false);
+                              }
 
                               /// TODO: Implement Tap
                             },

@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:unoquide/config/shared-services.dart';
+import 'package:unoquide/services/login.dart';
 
 import '../../../config/color_palette.dart';
 
@@ -11,6 +14,28 @@ class ParentLogin extends StatefulWidget {
 }
 
 class _ParentLoginState extends State<ParentLogin> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String? authToken;
+  bool isVisible = false;
+  parentLogin() async {
+    if (_emailController.text != null && _passwordController.text != null) {
+      var response =
+          await parent_login(_emailController.text, _passwordController.text);
+      authToken = response.token!.split(" ")[1];
+      putTokenToGlobal(token: authToken);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please enter your credentials",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +48,7 @@ class _ParentLoginState extends State<ParentLogin> {
                 image: AssetImage(
                     'assets/Images/Authentication/parent_login.png'))),
         child: Center(
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.85,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,27 +82,26 @@ class _ParentLoginState extends State<ParentLogin> {
                             children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.30,
-                                height: 30,
+                                height: 40,
                                 decoration: BoxDecoration(
                                     color: const Color.fromARGB(
                                         255, 217, 217, 217),
                                     borderRadius: BorderRadius.circular(30)),
-                                child: Container(
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        contentPadding: const EdgeInsets.only(
-                                            top: 2, left: 65),
-                                        hintStyle: const TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,
-                                        ),
-                                        hintText: 'Parent UID',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0))),
-                                  ),
+                                child: TextFormField(
+                                  controller: _emailController,
+                                  decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.only(
+                                          top: 2, left: 65),
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                      ),
+                                      hintText: 'Parent UID',
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0))),
                                 ),
                               ),
                               const SizedBox(
@@ -90,23 +114,35 @@ class _ParentLoginState extends State<ParentLogin> {
                                     color: const Color.fromARGB(
                                         255, 217, 217, 217),
                                     borderRadius: BorderRadius.circular(30)),
-                                child: Container(
-                                  child: TextFormField(
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: const EdgeInsets.only(
-                                            top: 2, left: 65),
-                                        hintStyle: const TextStyle(
+                                child: TextFormField(
+                                  controller: _passwordController,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.only(
+                                          top: 2, left: 65),
+                                      hintStyle: const TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 20,
+                                      ),
+                                      hintText: 'Password',
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isVisible = !isVisible;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          isVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
                                           color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,
                                         ),
-                                        hintText: 'Password',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30.0))),
-                                  ),
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0))),
                                 ),
                               ),
                             ],
@@ -114,8 +150,11 @@ class _ParentLoginState extends State<ParentLogin> {
                           GestureDetector(
                             onTap: () {
                               /// TODO: Implement Tap
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, 'home', (route) => false);
+                              parentLogin();
+                              if (authToken != null) {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, 'home', (route) => false);
+                              }
                             },
                             child: Container(
                               margin: const EdgeInsets.only(top: 15),

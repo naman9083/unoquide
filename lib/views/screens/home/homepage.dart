@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> {
     const Connect(),
     const MyProfile(),
   ];
+  @override
   int _selectedIndex = 1;
   String currentPage = 'Home';
   List<String> pageKeys = [

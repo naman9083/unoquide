@@ -48,6 +48,7 @@ dependencies:
 #  dyte_client: ^0.8.12
 
   auto_size_text: ^3.0.0
+  shared_preferences: ^2.0.16
 
 
 dev_dependencies:
