@@ -5,7 +5,7 @@ import 'package:unoquide/models/login.dart';
 import 'package:http/http.dart' as http;
 
 Future<StudentLogin> student_login(String email, String password) async {
-  String url = "$baseURL/student/login";
+  String url = "$baseURL/student/Login";
   var response = await http.post(Uri.parse(url),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"admNo": email, "password": password}));

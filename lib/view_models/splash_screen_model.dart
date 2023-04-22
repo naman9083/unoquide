@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/shared-services.dart';
+import 'package:unoquide/services/studentData.dart';
 
 import '../utils/routes/route_names.dart';
 
@@ -15,8 +17,20 @@ class MyCustomClass {
 class SplashScreenModel {
   initiateApp(BuildContext context) async {
     await Future.delayed(const Duration(milliseconds: 2000));
+    getTokenFromGlobal().then((value) {
+      if (value != '') {
+        Navigator.pushNamedAndRemoveUntil(
+            context, RouteNames.homeScreen, (route) => false);
+        getStudentData(value).then((value) {
+          putStudentToGlobal(student: value);
 
-    Navigator.pushNamedAndRemoveUntil(
-        context, RouteNames.categoryLoginScreen, (route) => false);
+          print(value.firstName);
+          // print(value);
+        });
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, RouteNames.categoryLoginScreen, (route) => false);
+      }
+    });
   }
 }

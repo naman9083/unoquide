@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/constants/constants.dart';
+import 'package:unoquide/models/studentModel.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/notifications.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/statistics.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
+
+import '../../../../services/studentData.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,6 +17,49 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String name = 'Arnavi';
+  String classs = '3A';
+  String admissionNo = '3288';
+  String picUrl = 'https://picsum.photos/250?image=9';
+  String schoolName = 'School Name';
+  List<Notifis> notifications = [];
+  setStateIfMounted(f) {
+    if (mounted) setState(f);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTokenFromGlobal().then((value) {
+      if (value != null) {
+        getStudentData(value).then((value) {
+          setStateIfMounted(() {
+            name = value.firstName;
+            classs = "${value.studentClass.grade}${value.studentClass.div}";
+            admissionNo = value.admNo;
+            picUrl = value.image.location;
+            schoolName = value.schoolName;
+            notifications = value.notifications;
+          });
+          putStudentToGlobal(student: value);
+
+          // print(value);
+        });
+      }
+    });
+    getStudentFromGlobal().then((value) {
+      setStateIfMounted(() {
+        name = value.firstName;
+        classs = "${value.studentClass.grade}${value.studentClass.div}";
+        admissionNo = value.admNo;
+        picUrl = value.image.location;
+        schoolName = value.schoolName;
+
+        notifications = value.notifications;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width / 1;
@@ -22,16 +69,22 @@ class _HomeState extends State<Home> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(
-            height: 25,
+          Text(
+            schoolName,
+            style: const TextStyle(
+              color: blackColor,
+              fontFamily: 'Raleway',
+              fontWeight: bold,
+              fontSize: 40,
+            ),
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
-                  'Hello Arnavi !',
-                  style: TextStyle(
+                Text(
+                  "Hello $name !",
+                  style: const TextStyle(
                     color: blackColor,
                     fontFamily: 'Raleway',
                     fontWeight: bold,
@@ -56,11 +109,11 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Class: 3A\nAdmission No: 3288',
+                        "Class: $classs\nAdmission No: $admissionNo",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: blackColor,
                           fontFamily: 'Raleway',
                           fontWeight: bold,
@@ -106,13 +159,26 @@ class _HomeState extends State<Home> {
             InkWell(
               onTap: () {},
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.asset(
-                    'assets/Icons/userpng.png',
-                    height: 120,
-                    width: 120,
-                    fit: BoxFit.fill,
-                  )),
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                  picUrl,
+                  height: 120,
+                  width: 120,
+                  fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ]),
           Row(
@@ -254,7 +320,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Notifications(),
+                      builder: (context) => const Notifications(),
                     ),
                   );
                 },
@@ -283,34 +349,39 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   child: Column(
-                    children: const [
-                      SizedBox(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      const Text(
                         'Notifications',
                         style: TextStyle(
                           color: whiteColor,
                           fontFamily: 'GTN',
                           fontWeight: bold,
-                          fontSize: 15,
+                          fontSize: 20,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Center(
-                        child: Text(
-                          '\u2022     Lorem ipsum dolor sit ame. \n'
-                          '\u2022     Sed nisi, adipiscing semper scelerisque\n'
-                          '\u2022     Ac imperdiet vulputate massa in morbi. ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: blackColor,
-                            fontFamily: 'GTN',
-                            fontSize: 8,
-                          ),
-                        ),
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: notifications.length,
+                            padding: const EdgeInsets.all(8),
+                            itemBuilder: (context, index) {
+                              return Text(
+                                notifications[index].text,
+                                style: TextStyle(
+                                  color: blackColor,
+                                  fontFamily: 'GTN',
+                                  fontWeight: bold,
+                                  fontSize: 12,
+                                ),
+                              );
+                            }),
                       ),
                     ],
                   ),

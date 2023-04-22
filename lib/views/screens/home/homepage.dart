@@ -60,6 +60,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       setState(() {
         _selectedIndex = index;
+
         currentPage = pageKeys[index];
       });
     }
