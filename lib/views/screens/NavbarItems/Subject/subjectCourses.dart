@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/models/studentModel.dart';
@@ -69,7 +70,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                         children: [
                           Center(
                             child: Container(
-                              margin: const EdgeInsets.only(top: 10),
+                              margin: const EdgeInsets.only(top: 10, right: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -84,25 +85,43 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                                 ],
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.network(
-                                  listSubject[index].subject.image.location,
-                                  height: height * 0.5,
-                                  width: width * 0.4,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    listSubject[index].subject.image.location,
+                                    height: height * 0.5,
+                                    width: width * 0.4,
+                                    fit: BoxFit.cover,
+                                  ).blurred(
+                                    blur: 1,
+                                    blurColor: Colors.white.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(20),
+                                  )),
                             ),
                           ),
                           Center(
-                            child: Text(listSubject[index].subject.name,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                    color: blackColor,
-                                    fontSize: 20,
-                                    fontWeight: bold,
-                                    fontFamily: 'Raleway',
-                                    fontStyle: FontStyle.italic)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: height * 0.1,
+                                ),
+                                Text(listSubject[index].subject.name,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        color: blackColor,
+                                        shadows: [
+                                          Shadow(
+                                            blurRadius: 10.0,
+                                            color: Colors.white,
+                                            offset: Offset(1.0, 1.0),
+                                          ),
+                                        ],
+                                        fontSize: 20,
+                                        fontWeight: bold,
+                                        fontFamily: 'Raleway',
+                                        fontStyle: FontStyle.italic)),
+                              ],
+                            ),
                           ),
                         ],
                       ),

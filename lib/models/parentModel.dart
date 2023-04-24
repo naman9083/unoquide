@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final parent = parentFromJson(jsonString);
-
 import 'dart:convert';
 
 Parent parentFromJson(String str) => Parent.fromJson(json.decode(str));

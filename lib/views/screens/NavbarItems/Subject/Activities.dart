@@ -1,6 +1,7 @@
 import 'package:fwfh_webview/fwfh_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/Game.dart';
 
 import '../../../../config/shared-services.dart';
 import '../../../../models/studentModel.dart';
@@ -33,13 +34,8 @@ class _ActivitesState extends State<Activites> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          Scho,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Raleway'),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.16,
         ),
         const Center(
           child: Text(
@@ -72,10 +68,7 @@ class _ActivitesState extends State<Activites> {
               return InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WebView(
-                            notes[index].video,
-                            aspectRatio: 16 / 9,
-                          )));
+                      builder: (context) => WebV(id: notes[index].video)));
                 },
                 child: Container(
                   alignment: Alignment.center,

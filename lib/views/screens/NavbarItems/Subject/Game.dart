@@ -33,13 +33,8 @@ class _GamesAState extends State<GamesA> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          Scho,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Raleway'),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.16,
         ),
         const Center(
           child: Text(
@@ -72,10 +67,7 @@ class _GamesAState extends State<GamesA> {
               return InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WebView(
-                            notes[index].url,
-                            aspectRatio: 16 / 9,
-                          )));
+                      builder: (context) => WebV(id: notes[index].url)));
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -106,5 +98,16 @@ class _GamesAState extends State<GamesA> {
         ),
       ],
     );
+  }
+}
+
+class WebV extends StatelessWidget {
+  const WebV({Key? key, required this.id}) : super(key: key);
+  final String id;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.only(top: 50, bottom: 10.0, right: 10.0),
+        child: WebView(id, aspectRatio: 4 / 5));
   }
 }

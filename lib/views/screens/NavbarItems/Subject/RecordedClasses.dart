@@ -1,6 +1,7 @@
 import 'package:fwfh_webview/fwfh_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 import '../../../../config/shared-services.dart';
 import '../../../../models/studentModel.dart';
@@ -33,13 +34,8 @@ class _RecLecturesState extends State<RecLectures> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          Scho,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Raleway'),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.14,
         ),
         const Center(
           child: Text(
@@ -72,9 +68,8 @@ class _RecLecturesState extends State<RecLectures> {
               return InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WebView(
-                            notes[index].video,
-                            aspectRatio: 16 / 9,
+                      builder: (context) => YoutubeI(
+                            id: _getYoutubeVideoIdByURL(notes[index].video),
                           )));
                 },
                 child: Container(
@@ -115,8 +110,29 @@ class _RecLecturesState extends State<RecLectures> {
 
   String _getYoutubeVideoIdByURL(String url) {
     String id = url.substring(url.length - 11);
-    print(url);
-    print(id);
+
     return id;
+  }
+}
+
+class YoutubeI extends StatelessWidget {
+  YoutubeI({Key? key, required this.id}) : super(key: key);
+  String id;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 40.0, bottom: 10.0, right: 10.0),
+      child: YoutubePlayer(
+          controller: YoutubePlayerController.fromVideoId(
+        videoId: id,
+        params: const YoutubePlayerParams(
+          showControls: true,
+          showFullscreenButton: true,
+          mute: true,
+          loop: true,
+        ),
+      )),
+    );
   }
 }

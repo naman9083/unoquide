@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                           print('EQ');
                         },
                         child: const RailIconImage(
-                            label: 'Emotional\nIntelligence',
+                            label: 'EQ',
                             imgUrl: 'assets/Icons/brain.png',
                             size: 25),
                       ),
@@ -166,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                           selectTab(2);
                         },
                         child: const RailIconImage(
-                            label: 'Syllabus/Courses',
+                            label: 'Course',
                             imgUrl: 'assets/Icons/book.png',
                             size: 25),
                       ),
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                           selectTab(3);
                         },
                         child: const RailIconImage(
-                            label: 'Games/\nInteractive Courses',
+                            label: 'AR & Games',
                             imgUrl: 'assets/Icons/games.png',
                             size: 25),
                       ),
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                 _buildOffstageNavigator('StatisticsReports'),
                 _buildOffstageNavigator('MyProfile'),
                 Container(
-                  width: MediaQuery.of(context).size.width * .85,
+                  // width: MediaQuery.of(context).size.width * .85,
                   height: MediaQuery.of(context).size.height * .15,
                   color: backgroundColor,
                   child: Align(
