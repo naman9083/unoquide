@@ -32,7 +32,7 @@ class TabNavigator extends StatelessWidget {
     } else if (tabItem == 'MyProfile') {
       child = const MyProfile();
     } else if (tabItem == 'Games') {
-      child = const Games();
+      child = SubjectCourses(screenIndex: 2);
     } else {
       child = const Center(child: Text('Settings'));
     }

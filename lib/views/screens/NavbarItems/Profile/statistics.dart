@@ -20,8 +20,8 @@ class _StatisticsState extends State<Statistics> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(
-            height: 15,
+          SizedBox(
+            height: height * .16,
           ),
           const Text(
             'Statistics',

@@ -18,6 +18,11 @@ Future<String> getTokenFromGlobal() async {
   return token;
 }
 
+Future<void> removeTokenFromGlobal() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.remove('token');
+}
+
 Future<void> putStudentToGlobal({Student? student}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('student', jsonEncode(student));

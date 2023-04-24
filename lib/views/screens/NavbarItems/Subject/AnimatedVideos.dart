@@ -63,7 +63,7 @@ class _AnimatedVideosState extends State<AnimatedVideos> {
           child: GridView.count(
             // Create a grid with 2 columns. If you change the scrollDirection to
             // horizontal, this would produce 2 rows.
-            crossAxisSpacing: 5.0,
+            crossAxisSpacing: 10.0,
 
             mainAxisSpacing: 5.0,
             crossAxisCount: 3,
@@ -109,19 +109,16 @@ class _AnimatedVideosState extends State<AnimatedVideos> {
             }),
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
       ],
     );
   }
 
-  String? _getYoutubeVideoIdByURL(String url) {
-    final regex = RegExp(r'.*\?v=(.+?)($|[\&])', caseSensitive: false);
+  String _getYoutubeVideoIdByURL(String url) {
+    String id = url.substring(url.length - 11);
 
-    try {
-      if (regex.hasMatch(url)) {
-        return regex.firstMatch(url)!.group(1);
-      }
-    } catch (e) {
-      return null;
-    }
+    return id;
   }
 }

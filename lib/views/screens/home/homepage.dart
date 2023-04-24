@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/constants/constants.dart';
+import 'package:unoquide/services/studentData.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
+import 'package:unoquide/views/screens/ChangePassword/changePassword.dart';
 import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
 import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/NavbarItems/Home/home.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/myProfile.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
+import 'package:unoquide/views/screens/authentication/category_login.dart';
 
 import '../../../utils/routes/navigator.dart';
 import '../NavbarItems/AudioVideo/AudioVideo.dart';
@@ -52,33 +55,36 @@ class _HomePageState extends State<HomePage> {
     'StatisticsReports': GlobalKey<NavigatorState>(),
     'MyProfile': GlobalKey<NavigatorState>(),
   };
-  void selectTab(int index) {
-    if (index == _selectedIndex) {
-      navigatorKeys[pageKeys[index]]!
-          .currentState!
-          .popUntil((route) => route.isFirst);
-    } else {
-      setState(() {
-        _selectedIndex = index;
-
-        currentPage = pageKeys[index];
-      });
-    }
+  String authToken = '';
+  String schoolName = '';
+  String picUrl =
+      'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png';
+  @override
+  void initState() {
+    super.initState();
+    getTokenFromGlobal().then((value) => {
+          if (value != null)
+            {
+              setStateIfMounted(() {
+                authToken = value;
+              }),
+              getStudentData(value).then((value) => {
+                    if (value != null)
+                      {
+                        setStateIfMounted(() {
+                          schoolName = value.schoolName;
+                          picUrl = value.image.location;
+                        })
+                      }
+                  })
+            }
+        });
   }
 
-  Future<bool> _onWillPop() async {
-    final isFirstRouteInCurrentTab =
-        !await navigatorKeys[currentPage]!.currentState!.maybePop();
-    if (isFirstRouteInCurrentTab) {
-      if (currentPage != 'Home') {
-        selectTab(1);
-        return false;
-      }
-    }
-    return isFirstRouteInCurrentTab;
+  setStateIfMounted(f) {
+    if (mounted) setState(f);
   }
 
-  final Widget _currentBody = const Home();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -222,6 +228,29 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 10,
                       ),
+                      //logut
+                      InkWell(
+                        onTap: () => logout(context),
+                        child: Column(
+                          children: const [
+                            Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                            Text(
+                              'Logout',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 9,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 ),
@@ -240,6 +269,95 @@ class _HomePageState extends State<HomePage> {
                 _buildOffstageNavigator('AudioVideo'),
                 _buildOffstageNavigator('StatisticsReports'),
                 _buildOffstageNavigator('MyProfile'),
+                Container(
+                  width: MediaQuery.of(context).size.width * .85,
+                  height: MediaQuery.of(context).size.height * .15,
+                  color: backgroundColor,
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          schoolName,
+                          style: const TextStyle(
+                            color: blackColor,
+                            fontFamily: 'Raleway',
+                            fontWeight: bold,
+                            fontSize: 40,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ChangePassword()));
+                              },
+                              child: Container(
+                                  height: 40,
+                                  width: 150,
+                                  margin: const EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFffdb9c),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'Change Password',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                logout(context);
+                              },
+                              child: Container(
+                                  height: 40,
+                                  width: 120,
+                                  margin: const EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFffdb9c),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      'Logout',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            CircleAvatar(
+                                radius: 22,
+                                backgroundColor: Colors.white,
+                                backgroundImage: NetworkImage(picUrl ??
+                                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png')),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             )),
           ],
@@ -256,5 +374,37 @@ class _HomePageState extends State<HomePage> {
         tabItem: navigatorKey,
       ),
     );
+  }
+
+  void selectTab(int index) {
+    if (index == _selectedIndex) {
+      navigatorKeys[pageKeys[index]]!
+          .currentState!
+          .popUntil((route) => route.isFirst);
+    } else {
+      setStateIfMounted(() {
+        _selectedIndex = index;
+
+        currentPage = pageKeys[index];
+      });
+    }
+  }
+
+  logout(context) {
+    removeTokenFromGlobal();
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const CategoryLoginScreen()));
+  }
+
+  Future<bool> _onWillPop() async {
+    final isFirstRouteInCurrentTab =
+        !await navigatorKeys[currentPage]!.currentState!.maybePop();
+    if (isFirstRouteInCurrentTab) {
+      if (currentPage != 'Home') {
+        selectTab(1);
+        return false;
+      }
+    }
+    return isFirstRouteInCurrentTab;
   }
 }

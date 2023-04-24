@@ -68,7 +68,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Notes',
             style: TextStyle(
                 color: blackColor,
@@ -85,7 +85,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Q&As',
             style: TextStyle(
                 color: blackColor,
@@ -103,7 +103,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Activities',
             style: TextStyle(
                 color: blackColor,
@@ -121,7 +121,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Games',
             style: TextStyle(
                 color: blackColor,
@@ -139,7 +139,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Recorded Lectures',
             style: TextStyle(
                 color: blackColor,
@@ -157,7 +157,7 @@ class _SubjectRState extends State<SubjectR> {
                       subjectName: subjectData.subject.name,
                     )));
           },
-          child: Text(
+          child: const Text(
             '✯ Animated Videos',
             style: TextStyle(
                 color: blackColor,
@@ -166,7 +166,7 @@ class _SubjectRState extends State<SubjectR> {
                 fontFamily: 'Raleway'),
           ),
         ),
-        InkWell(
+        const InkWell(
           child: Text(
             '✯ Assignments',
             style: TextStyle(

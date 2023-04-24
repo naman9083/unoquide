@@ -44,7 +44,7 @@ class _StudentLoginState extends State<StudentLogin> {
           print(authToken);
           putTokenToGlobal(token: authToken!);
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-        } else {
+        } else if (value == null) {
           setState(() {
             isLoading = false;
           });

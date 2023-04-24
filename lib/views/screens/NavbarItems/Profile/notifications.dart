@@ -29,8 +29,8 @@ class _NotificationsState extends State<Notifications> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .16,
           ),
           const Text(
             "Notifications",

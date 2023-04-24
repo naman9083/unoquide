@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/models/studentModel.dart';
+import 'package:unoquide/services/studentData.dart';
 
-import 'package:unoquide/views/screens/NavbarItems/AudioVideo/Recorded.dart';
-import 'package:unoquide/views/screens/NavbarItems/AudioVideo/visuals.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/Game.dart';
+import 'package:unoquide/views/screens/NavbarItems/Subject/RecordedClasses.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectResource.dart';
 
 import '../../../../constants/constants.dart';
+import 'AnimatedVideos.dart';
 
 class SubjectCourses extends StatefulWidget {
   SubjectCourses({Key? key, required this.screenIndex}) : super(key: key);
@@ -20,28 +22,19 @@ class _SubjectCoursesState extends State<SubjectCourses> {
   int screenIndex;
   _SubjectCoursesState(this.screenIndex);
   List<Subject> listSubject = [];
-  Function onTap = (Subject subjectName, BuildContext context, int index) {
-    if (index == 0) {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SubjectR(
-                subjectData: subjectName,
-              )));
-    } else if (index == 1) {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Visuals(
-                subjectName: "Hindi",
-              )));
-    } else {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const Recorded()));
-    }
-  };
-  String SchoolName = "School Name";
+  setStateIfMounted(f) {
+    if (mounted) setState(f);
+  }
+
+  bool loading = true;
+
   @override
   void initState() {
-    getStudentFromGlobal().then((value) => setState(() {
-          listSubject = value.subjects;
-          SchoolName = value.schoolName;
+    getTokenFromGlobal().then((value) => getStudentData(value).then((value) {
+          setStateIfMounted(() {
+            listSubject = value.subjects;
+            loading = false;
+          });
         }));
 
     super.initState();
@@ -51,61 +44,99 @@ class _SubjectCoursesState extends State<SubjectCourses> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: GridView.count(
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this would produce 2 rows.
-        crossAxisSpacing: 1.0,
+    return loading
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : Column(
+            children: [
+              SizedBox(
+                height: height * .16,
+              ),
+              Expanded(
+                child: GridView.count(
+                  // Create a grid with 2 columns. If you change the scrollDirection to
+                  // horizontal, this would produce 2 rows.
+                  crossAxisSpacing: 10.0,
 
-        mainAxisSpacing: 0.0,
-        crossAxisCount: 2,
-        // Generate 100 Widgets that display their index in the List
-        children: List.generate(listSubject.length, (index) {
-          return InkWell(
-            onTap: () => onTap(listSubject[index], context, 0),
-            child: Stack(
-              children: [
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 5,
-                          blurRadius: 7,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        listSubject[index].subject.image.location,
-                        height: height * 0.5,
-                        width: width * 0.4,
-                        fit: BoxFit.cover,
+                  crossAxisCount: 3,
+                  // Generate 100 Widgets that display their index in the List
+                  children: List.generate(listSubject.length, (index) {
+                    return InkWell(
+                      onTap: () =>
+                          onTap(listSubject[index], context, screenIndex),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: Container(
+                              margin: const EdgeInsets.only(top: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.network(
+                                  listSubject[index].subject.image.location,
+                                  height: height * 0.5,
+                                  width: width * 0.4,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Text(listSubject[index].subject.name,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: blackColor,
+                                    fontSize: 20,
+                                    fontWeight: bold,
+                                    fontFamily: 'Raleway',
+                                    fontStyle: FontStyle.italic)),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                 ),
-                Center(
-                  child: Text(listSubject[index].subject.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: blackColor,
-                          fontSize: 20,
-                          fontWeight: bold,
-                          fontFamily: 'Raleway',
-                          fontStyle: FontStyle.italic)),
-                ),
-              ],
-            ),
+              ),
+            ],
           );
-        }),
-      ),
-    );
   }
+
+  Function onTap = (Subject subjectName, BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SubjectR(
+                subjectData: subjectName,
+              )));
+    } else if (index == 1) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AnimatedVideos(
+                subjectName: subjectName.subject.name,
+                notes: subjectName.subject.animatedVideo,
+              )));
+    } else if (index == 2) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => GamesA(
+                subjectName: subjectName.subject.name,
+                notes: subjectName.subject.game,
+              )));
+    } else {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RecLectures(
+              notes: subjectName.subject.recClass,
+              subjectName: subjectName.subject.name)));
+    }
+  };
 }

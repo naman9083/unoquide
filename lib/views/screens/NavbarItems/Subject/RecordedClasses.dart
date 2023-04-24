@@ -113,15 +113,10 @@ class _RecLecturesState extends State<RecLectures> {
     );
   }
 
-  String? _getYoutubeVideoIdByURL(String url) {
-    final regex = RegExp(r'.*\?v=(.+?)($|[\&])', caseSensitive: false);
-
-    try {
-      if (regex.hasMatch(url)) {
-        return regex.firstMatch(url)!.group(1);
-      }
-    } catch (e) {
-      return null;
-    }
+  String _getYoutubeVideoIdByURL(String url) {
+    String id = url.substring(url.length - 11);
+    print(url);
+    print(id);
+    return id;
   }
 }

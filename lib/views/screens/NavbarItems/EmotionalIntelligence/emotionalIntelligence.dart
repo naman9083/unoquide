@@ -30,8 +30,8 @@ class _EmotionalIntelligenceState extends State<EmotionalIntelligence> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: height * .16,
         ),
         RichText(
           text: const TextSpan(
