@@ -43,7 +43,8 @@ class _HomePageState extends State<HomePage> {
     'SubjectCourses',
     'Games',
     'AudioVideo',
-    'StatisticsReports',
+    'Connect',
+    'Calender',
     'MyProfile',
   ];
   Map<String, GlobalKey<NavigatorState>> navigatorKeys = {
@@ -52,7 +53,8 @@ class _HomePageState extends State<HomePage> {
     'SubjectCourses': GlobalKey<NavigatorState>(),
     'Games': GlobalKey<NavigatorState>(),
     'AudioVideo': GlobalKey<NavigatorState>(),
-    'StatisticsReports': GlobalKey<NavigatorState>(),
+    'Connect': GlobalKey<NavigatorState>(),
+    'Calender': GlobalKey<NavigatorState>(),
     'MyProfile': GlobalKey<NavigatorState>(),
   };
   String authToken = '';
@@ -131,127 +133,109 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  child: ListView(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(0);
-                          print('EQ');
-                        },
-                        child: const RailIconImage(
-                            label: 'EQ',
-                            imgUrl: 'assets/Icons/brain.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(1);
-                        },
-                        child: const RailIconImage(
-                            label: 'Home',
-                            imgUrl: 'assets/Icons/home.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(2);
-                        },
-                        child: const RailIconImage(
-                            label: 'Course',
-                            imgUrl: 'assets/Icons/book.png',
-                            size: 25),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(3);
-                        },
-                        child: const RailIconImage(
-                            label: 'AR & Games',
-                            imgUrl: 'assets/Icons/games.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(4);
-                        },
-                        child: const RailIconImage(
-                            label: 'Audio Visual\nContent',
-                            imgUrl: 'assets/Icons/video.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(5);
-                        },
-                        child: const RailIconImage(
-                            label: 'Connect',
-                            imgUrl: 'assets/Icons/exam.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: const RailIconImage(
-                            label: 'Calender',
-                            imgUrl: 'assets/Icons/calender.png',
-                            size: 25),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          selectTab(6);
-                        },
-                        child: const RailIconImage(
-                            label: 'My Profile',
-                            imgUrl: 'assets/Icons/profile.png',
-                            size: 30),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      //logut
-                      InkWell(
-                        onTap: () => logout(context),
-                        child: Column(
-                          children: const [
-                            Icon(
-                              Icons.logout,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            Text(
-                              'Logout',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 9,
-                              ),
-                            ),
-                          ],
+                  child: Center(
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 10,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
+                        InkWell(
+                          onTap: () {
+                            selectTab(0);
+                            print('EQ');
+                          },
+                          child: const RailIconImage(
+                              label: 'EQ',
+                              imgUrl: 'assets/Icons/brain.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(1);
+                          },
+                          child: const RailIconImage(
+                              label: 'Home',
+                              imgUrl: 'assets/Icons/home.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(2);
+                          },
+                          child: const RailIconImage(
+                              label: 'Course',
+                              imgUrl: 'assets/Icons/book.png',
+                              size: 25),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(3);
+                          },
+                          child: const RailIconImage(
+                              label: 'AR & Games',
+                              imgUrl: 'assets/Icons/games.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(4);
+                          },
+                          child: const RailIconImage(
+                              label: 'Audio Visual\nContent',
+                              imgUrl: 'assets/Icons/video.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(5);
+                          },
+                          child: const RailIconImage(
+                              label: 'Connect',
+                              imgUrl: 'assets/Icons/exam.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(6);
+                          },
+                          child: const RailIconImage(
+                              label: 'Calender',
+                              imgUrl: 'assets/Icons/calender.png',
+                              size: 25),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            selectTab(7);
+                          },
+                          child: const RailIconImage(
+                              label: 'My Profile',
+                              imgUrl: 'assets/Icons/profile.png',
+                              size: 30),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -267,7 +251,8 @@ class _HomePageState extends State<HomePage> {
                 _buildOffstageNavigator('SubjectCourses'),
                 _buildOffstageNavigator('Games'),
                 _buildOffstageNavigator('AudioVideo'),
-                _buildOffstageNavigator('StatisticsReports'),
+                _buildOffstageNavigator('Connect'),
+                _buildOffstageNavigator('Calender'),
                 _buildOffstageNavigator('MyProfile'),
                 Container(
                   // width: MediaQuery.of(context).size.width * .85,
@@ -322,7 +307,133 @@ class _HomePageState extends State<HomePage> {
                             ),
                             InkWell(
                               onTap: () {
-                                logout(context);
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Dialog(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0,
+                                                        3), // changes position of shadow
+                                                  ),
+                                                ],
+                                              ),
+                                              height: 100,
+                                              width: 200,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  const Text(
+                                                    'Are you sure you want to logout?',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontFamily: 'Raleway',
+                                                      fontWeight: bold,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Container(
+                                                            height: 40,
+                                                            width: 120,
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 10),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: const Color(
+                                                                  0xFFffdb9c),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                            ),
+                                                            child: const Center(
+                                                              child: Text(
+                                                                'Cancel',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontFamily:
+                                                                      'Raleway',
+                                                                  fontWeight:
+                                                                      bold,
+                                                                  fontSize: 15,
+                                                                ),
+                                                              ),
+                                                            )),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 3,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          logout(context);
+                                                        },
+                                                        child: Container(
+                                                            height: 40,
+                                                            width: 120,
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    top: 10),
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: const Color(
+                                                                  0xFFffdb9c),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                            ),
+                                                            child: const Center(
+                                                              child: Text(
+                                                                'Logout',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontFamily:
+                                                                      'Raleway',
+                                                                  fontWeight:
+                                                                      bold,
+                                                                  fontSize: 15,
+                                                                ),
+                                                              ),
+                                                            )),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ));
+                                // logout(context);
                               },
                               child: Container(
                                   height: 40,

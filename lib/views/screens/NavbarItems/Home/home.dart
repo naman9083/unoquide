@@ -4,6 +4,7 @@ import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/models/studentModel.dart';
 import 'package:unoquide/utils/common/commonItems.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/notifications.dart';
+import 'package:unoquide/views/screens/NavbarItems/Profile/personalInfo.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/statistics.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getTokenFromGlobal().then((value) {
-      if (value != null) {
+      if (value.isNotEmpty) {
         getStudentData(value).then((value) {
           putStudentToGlobal(student: value);
           setStateIfMounted(() {
@@ -161,7 +162,14 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PersonalInfo(),
+                            ),
+                          );
+                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.network(

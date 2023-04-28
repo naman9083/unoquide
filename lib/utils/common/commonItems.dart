@@ -98,7 +98,7 @@ class StatisticsContainer extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Container(
         height: height * .33,
-        width: width * .25,
+        width: width * .24,
         margin: const EdgeInsets.fromLTRB(10, 40, 20, 0),
         decoration: BoxDecoration(
           color: const Color(0xFFF8F8F866),

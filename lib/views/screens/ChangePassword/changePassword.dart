@@ -75,96 +75,99 @@ class _ChangePasswordState extends State<ChangePassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         backgroundColor: backgroundColor,
-        body: Center(
-            child: Container(
-          height: MediaQuery.of(context).size.height * 0.9,
-          width: MediaQuery.of(context).size.width * 0.5,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            children: [
-              Image.asset('assets/Icons/lock.png', height: 50, width: 50),
-              const Text('Change Password',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: isObscure,
-                decoration: InputDecoration(
-                  labelText: 'New Password',
-                  suffixIcon: IconButton(
-                    icon: isObscure
-                        ? const Icon(Icons.visibility_off)
-                        : const Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isObscure = !isObscure;
-                      });
-                    },
-                  ),
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Center(
+              child: Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            width: MediaQuery.of(context).size.width * 0.5,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: [
+                Image.asset('assets/Icons/lock.png', height: 50, width: 50),
+                const Text('Change Password',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: passwordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: isObscure,
+                  decoration: InputDecoration(
+                    labelText: 'New Password',
+                    suffixIcon: IconButton(
+                      icon: isObscure
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
                     ),
-                    borderSide: BorderSide(
-                      width: 1.0,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              TextFormField(
-                controller: confirmPasswordController,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: isObscure2,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: isObscure2
-                        ? const Icon(Icons.visibility_off)
-                        : const Icon(Icons.visibility),
-                    onPressed: () {
-                      setState(() {
-                        isObscure2 = !isObscure2;
-                      });
-                    },
-                  ),
-                  labelText: 'Confirm New Password',
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                      width: 1.0,
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      borderSide: BorderSide(
+                        width: 1.0,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  changePass();
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  onPrimary: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: confirmPasswordController,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: isObscure2,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: isObscure2
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          isObscure2 = !isObscure2;
+                        });
+                      },
+                    ),
+                    labelText: 'Confirm New Password',
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 1.0,
+                      ),
+                    ),
                   ),
                 ),
-                child: const Text('Change Password'),
-              ),
-            ],
-          ),
-        )));
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    changePass();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                    onPrimary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text('Change Password'),
+                ),
+              ],
+            ),
+          )),
+        ));
   }
 }

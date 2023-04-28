@@ -23,6 +23,26 @@ Future<void> removeTokenFromGlobal() async {
   await prefs.remove('token');
 }
 
+Future<void> putParentTokenToGlobal(String? token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('token', token!);
+}
+
+Future<String> getParentTokenFromGlobal() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token;
+  if (prefs.containsKey('token')) {
+    token = prefs.getString('token')!;
+  }
+  token ??= '';
+  return token;
+}
+
+Future<void> removeParentTokenFromGlobal() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.remove('token');
+}
+
 Future<void> putStudentToGlobal({Student? student}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString('student', jsonEncode(student));

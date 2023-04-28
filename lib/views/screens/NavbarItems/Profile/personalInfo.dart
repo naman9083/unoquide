@@ -44,13 +44,12 @@ class _PersonalInfoState extends State<PersonalInfo> {
     var width = MediaQuery.of(context).size.width;
     return loading
         ? const Center(child: CircularProgressIndicator())
-        : Container(
-            decoration: const BoxDecoration(color: backgroundColor),
-            margin: const EdgeInsets.fromLTRB(0, 0, 80, 0),
+        : SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 17,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .16,
                 ),
                 const Text(
                   'Personal Information',
@@ -66,7 +65,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    width: MediaQuery.of(context).size.width * .8,
+                    width: MediaQuery.of(context).size.width * .9,
                     height: 2,
                     color: blackColor,
                   ),
@@ -97,6 +96,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 InfoItem(
                   textHeading: 'BLOOD GROUP',
                   textDesc: bloodGroup,
+                ),
+                const SizedBox(
+                  height: 34,
                 ),
               ],
             ),

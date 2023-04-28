@@ -21,15 +21,17 @@ class _StudentLoginState extends State<StudentLogin> {
   String? authToken;
   bool isVisible = false;
   studentLogin() async {
-    if (_emailController.text != null && _passwordController.text != null) {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
       setState(() {
         isLoading = true;
       });
       student_login(_emailController.text, _passwordController.text)
           .then((value) {
-        if (value != null) {
+        if (value.message == "Logged in successfully") {
           setState(() {
             isLoading = false;
+            authToken = value.token?.split(' ')[1];
           });
           Fluttertoast.showToast(
               msg: 'Login Successful',
@@ -39,17 +41,18 @@ class _StudentLoginState extends State<StudentLogin> {
               backgroundColor: Colors.green,
               textColor: Colors.white,
               fontSize: 16.0);
-          authToken = value.token?.split(' ')[1];
 
-          print(authToken);
-          putTokenToGlobal(token: authToken!);
+          putTokenToGlobal(token: value.token?.split(" ")[1]);
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-        } else if (value == null) {
+        } else {
           setState(() {
             isLoading = false;
+            _emailController.clear();
+            _passwordController.clear();
           });
+
           Fluttertoast.showToast(
-              msg: 'Login Failed! Check your credentials',
+              msg: value.message as String,
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
@@ -58,6 +61,15 @@ class _StudentLoginState extends State<StudentLogin> {
               fontSize: 16.0);
         }
       });
+    } else {
+      Fluttertoast.showToast(
+          msg: "Please fill all the fields",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 
@@ -76,7 +88,7 @@ class _StudentLoginState extends State<StudentLogin> {
                     image: AssetImage(
                         'assets/Images/Authentication/student_login.png'))),
             child: Center(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.85,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

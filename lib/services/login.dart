@@ -9,12 +9,8 @@ Future<StudentLogin> student_login(String email, String password) async {
   var response = await http.post(Uri.parse(url),
       headers: {"Content-Type": "application/json"},
       body: jsonEncode({"admNo": email, "password": password}));
-  if (response.statusCode == 200) {
-    print("Fetched Data successfully");
-    return StudentLogin.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('Failed to create post');
-  }
+
+  return StudentLogin.fromJson(jsonDecode(response.body));
 }
 
 Future<StudentLogin> teacher_login(String email, String password) async {

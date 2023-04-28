@@ -24,8 +24,16 @@ class _ParentLoginState extends State<ParentLogin> {
       isLoading = true;
       var response =
           await parent_login(_emailController.text, _passwordController.text);
-      authToken = response.token!.split(" ")[1];
-      putTokenToGlobal(token: authToken);
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      putParentTokenToGlobal(response.token);
+      Fluttertoast.showToast(
+          msg: response.message as String,
+          gravity: ToastGravity.BOTTOM,
+          toastLength: Toast.LENGTH_SHORT,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+
       isLoading = false;
     } else {
       Fluttertoast.showToast(
@@ -169,10 +177,6 @@ class _ParentLoginState extends State<ParentLogin> {
                                   onTap: () {
                                     /// TODO: Implement Tap
                                     parentLogin();
-                                    if (authToken != null) {
-                                      Navigator.pushNamedAndRemoveUntil(
-                                          context, 'home', (route) => false);
-                                    }
                                   },
                                   child: Container(
                                     margin: const EdgeInsets.only(top: 15),
