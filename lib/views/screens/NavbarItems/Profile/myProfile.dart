@@ -18,6 +18,9 @@ class _MyProfileState extends State<MyProfile> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        SizedBox(
+          height: height * .16,
+        ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           ImageTextClickableContainer(
               width: width * .3,

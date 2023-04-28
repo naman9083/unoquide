@@ -50,7 +50,7 @@ class _AudioVideoState extends State<AudioVideo> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => SubjectCourses(
-                        screenIndex: 2,
+                        screenIndex: 3,
                       ),
                     ),
                   );

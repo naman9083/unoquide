@@ -30,71 +30,6 @@ class RailIconImage extends StatelessWidget {
   }
 }
 
-class SubjectData extends StatelessWidget {
-  const SubjectData({Key? key, required this.subjectName}) : super(key: key);
-  final String subjectName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        Text(
-          subjectName,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 40,
-              fontWeight: bold,
-              fontFamily: 'Raleway'),
-        ),
-        const SizedBox(
-          height: 34,
-        ),
-        const SubjectText(subjectData: 'Notes'),
-        const SubjectText(subjectData: 'Q&As'),
-        const SubjectText(subjectData: 'Activities'),
-        const SubjectText(subjectData: 'Game'),
-        const SubjectText(subjectData: 'Recorded Lectures'),
-        const SubjectText(subjectData: 'Animated Videos'),
-      ],
-    );
-  }
-}
-
-class SubjectText extends StatelessWidget {
-  const SubjectText({Key? key, required this.subjectData, this.onTap})
-      : super(key: key);
-  final String subjectData;
-  final Function? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextButton(
-          onPressed: () {
-            onTap!();
-          },
-          style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(const Size(0, 0)),
-            padding: MaterialStateProperty.all(EdgeInsets.zero),
-          ),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text('\u2022 $subjectData',
-                style: const TextStyle(
-                    color: blackColor,
-                    fontSize: 23,
-                    fontWeight: bold,
-                    fontFamily: 'Raleway')),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class ImageTextClickableContainer extends StatelessWidget {
   const ImageTextClickableContainer(
       {Key? key,
@@ -163,7 +98,7 @@ class StatisticsContainer extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Container(
         height: height * .33,
-        width: width * .25,
+        width: width * .24,
         margin: const EdgeInsets.fromLTRB(10, 40, 20, 0),
         decoration: BoxDecoration(
           color: const Color(0xFFF8F8F866),

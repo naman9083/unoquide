@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/views/screens/NavbarItems/Profile/statistics.dart';
 
@@ -34,15 +35,17 @@ class _StatisticsReportsState extends State<StatisticsReports> {
             imgUrl: "assets/Images/Stats/draw.png",
             text: "Report Card",
             onTap: () {
+              getTokenFromGlobal().then((value) => print(value));
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => Column(
-                            children: const [
+                            children: [
                               SizedBox(
-                                height: 25,
+                                height:
+                                    MediaQuery.of(context).size.height * .12,
                               ),
-                              Text(
+                              const Text(
                                 "Report Card",
                                 style: TextStyle(
                                     fontSize: 35,

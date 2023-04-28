@@ -17,8 +17,8 @@ class _VideoConferenceState extends State<VideoConference> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 25,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .16,
         ),
         const Text(
           "Video Conference",

@@ -14,25 +14,28 @@ class InfoItem extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(textHeading,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: blackColor,
-                    fontSize: 20,
-                    fontWeight: bold,
-                    fontFamily: 'Raleway')),
-            Text(textDesc,
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                    color: blackColor,
-                    fontSize: 20,
-                    fontWeight: bold,
-                    fontFamily: 'Raleway')),
-          ],
+        Padding(
+          padding: const EdgeInsets.only(left: 4.0, right: 12.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(textHeading,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: blackColor,
+                      fontSize: 20,
+                      fontWeight: bold,
+                      fontFamily: 'Raleway')),
+              Text(textDesc,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                      color: blackColor,
+                      fontSize: 20,
+                      fontWeight: bold,
+                      fontFamily: 'Raleway')),
+            ],
+          ),
         ),
         const SizedBox(
           height: 8,

@@ -57,16 +57,9 @@ class _CategoryLoginScreenState extends State<CategoryLoginScreen> {
                       ),
                       margin: const EdgeInsets.only(top: 2),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Element(
-                            category: 'School',
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, '/schoolLoginScreen');
-                            },
-                          ),
                           Element(
                             category: 'Teacher',
                             onTap: () {
@@ -139,6 +132,7 @@ class Element extends StatelessWidget {
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.30,
+        margin: const EdgeInsets.only(top: 15),
         height: 25,
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 217, 217, 217),

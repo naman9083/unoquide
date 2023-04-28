@@ -3,6 +3,7 @@ import 'package:unoquide/views/screens/NavbarItems/Connect/connect.dart';
 import 'package:unoquide/views/screens/NavbarItems/EmotionalIntelligence/EmotionalIntelligence.dart';
 import 'package:unoquide/views/screens/NavbarItems/Games/games.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
+import 'package:unoquide/views/screens/NavbarItems/calendar/calendar.dart';
 
 import '../../views/screens/NavbarItems/AudioVideo/AudioVideo.dart';
 import '../../views/screens/NavbarItems/Home/home.dart';
@@ -27,13 +28,14 @@ class TabNavigator extends StatelessWidget {
       );
     } else if (tabItem == 'AudioVideo') {
       child = const AudioVideo();
-    } else if (tabItem == 'StatisticsReports') {
+    } else if (tabItem == 'Connect') {
       child = const Connect();
+    } else if (tabItem == 'Calender') {
+      child = const CalendarApp();
     } else if (tabItem == 'MyProfile') {
       child = const MyProfile();
-    }
-    else if (tabItem == 'Games') {
-      child = const Games();
+    } else if (tabItem == 'Games') {
+      child = SubjectCourses(screenIndex: 2);
     } else {
       child = const Center(child: Text('Settings'));
     }
