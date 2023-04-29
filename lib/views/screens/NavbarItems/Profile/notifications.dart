@@ -12,7 +12,7 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-  List<Notifis> notifications = [];
+  List<Notify>? notifications;
   @override
   void initState() {
     getStudentFromGlobal().then((value) {
@@ -45,11 +45,11 @@ class _NotificationsState extends State<Notifications> {
           ),
           Expanded(
               child: ListView.builder(
-            itemCount: notifications.length,
+            itemCount: notifications?.length,
             itemBuilder: (BuildContext context, int index) {
               return Align(
                 alignment: Alignment.centerLeft,
-                child: Text("\t\t\t\u2022 ${notifications[index].text}\n",
+                child: Text("\t\t\t\u2022 ${notifications?[index].text}\n",
                     style: const TextStyle(
                         color: blackColor,
                         fontSize: 20,

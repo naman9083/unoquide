@@ -5,13 +5,12 @@ import 'package:unoquide/utils/routes/routes.dart';
 import 'package:unoquide/views/screens/splash/splash.dart';
 
 void main() {
-  runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft])
+      .then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

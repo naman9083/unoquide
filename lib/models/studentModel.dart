@@ -9,6 +9,25 @@ Student studentFromJson(String str) => Student.fromJson(json.decode(str));
 String studentToJson(Student data) => json.encode(data.toJson());
 
 class Student {
+  String id;
+  String firstName;
+  String lastName;
+  String admNo;
+  Class studentClass;
+  DateTime dob;
+  List<Subject> subjects;
+  List<dynamic> parents;
+  String bloodGroup;
+  Img image;
+  List<dynamic> documents;
+  int tuitionFee;
+  int transportFee;
+  int labFee;
+  int v;
+  String email;
+  List<Notify> notifications;
+  String schoolName;
+
   Student({
     required this.id,
     required this.firstName,
@@ -30,25 +49,6 @@ class Student {
     required this.schoolName,
   });
 
-  String id;
-  String firstName;
-  String lastName;
-  String admNo;
-  Class studentClass;
-  DateTime dob;
-  List<Subject> subjects;
-  List<dynamic> parents;
-  String bloodGroup;
-  Img image;
-  List<dynamic> documents;
-  int tuitionFee;
-  int transportFee;
-  int labFee;
-  int v;
-  String email;
-  List<Notifis> notifications;
-  String schoolName;
-
   factory Student.fromJson(Map<String, dynamic> json) => Student(
         id: json["_id"],
         firstName: json["firstName"],
@@ -67,8 +67,8 @@ class Student {
         labFee: json["LabFee"],
         v: json["__v"],
         email: json["email"],
-        notifications: List<Notifis>.from(
-            json["notifications"].map((x) => Notifis.fromJson(x))),
+        notifications: List<Notify>.from(
+            json["notifications"].map((x) => Notify.fromJson(x))),
         schoolName: json["schoolName"],
       );
 
@@ -96,6 +96,12 @@ class Student {
 }
 
 class Img {
+  String eTag;
+  String location;
+  String key;
+  Bucket bucket;
+  String? imageKey;
+
   Img({
     required this.eTag,
     required this.location,
@@ -103,12 +109,6 @@ class Img {
     required this.bucket,
     this.imageKey,
   });
-
-  String eTag;
-  String location;
-  String key;
-  Bucket bucket;
-  String? imageKey;
 
   factory Img.fromJson(Map<String, dynamic> json) => Img(
         eTag: json["ETag"],
@@ -132,8 +132,20 @@ enum Bucket { UNO_GUIDE_BUCKET_0 }
 final bucketValues =
     EnumValues({"uno-guide-bucket-0": Bucket.UNO_GUIDE_BUCKET_0});
 
-class Notifis {
-  Notifis({
+class Notify {
+  String id;
+  List<String> receiverId;
+  School senderId;
+  String title;
+  String text;
+  bool active;
+  List<Type> type;
+  DateTime createdAt;
+  DateTime updatedAt;
+  int v;
+  String? sender;
+
+  Notify({
     required this.id,
     required this.receiverId,
     required this.senderId,
@@ -144,30 +156,21 @@ class Notifis {
     required this.createdAt,
     required this.updatedAt,
     required this.v,
+    this.sender,
   });
 
-  String id;
-  List<String> receiverId;
-  School senderId;
-  String title;
-  String text;
-  bool active;
-  List<String> type;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int v;
-
-  factory Notifis.fromJson(Map<String, dynamic> json) => Notifis(
+  factory Notify.fromJson(Map<String, dynamic> json) => Notify(
         id: json["_id"],
         receiverId: List<String>.from(json["receiver_id"].map((x) => x)),
         senderId: schoolValues.map[json["sender_id"]]!,
         title: json["title"],
         text: json["text"],
         active: json["active"],
-        type: List<String>.from(json["type"].map((x) => x)),
+        type: List<Type>.from(json["type"].map((x) => typeValues.map[x]!)),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
+        sender: json["sender"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -177,19 +180,33 @@ class Notifis {
         "title": title,
         "text": text,
         "active": active,
-        "type": List<dynamic>.from(type.map((x) => x)),
+        "type": List<dynamic>.from(type.map((x) => typeValues.reverse[x])),
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
+        "sender": sender,
       };
 }
 
-enum School { THE_63275848690_AC78_EFD493_FCD }
+enum School { THE_63275848690_AC78_EFD493_FCD, THE_6371_FE9_CB6367_ACD95387644 }
 
-final schoolValues = EnumValues(
-    {"63275848690ac78efd493fcd": School.THE_63275848690_AC78_EFD493_FCD});
+final schoolValues = EnumValues({
+  "63275848690ac78efd493fcd": School.THE_63275848690_AC78_EFD493_FCD,
+  "6371fe9cb6367acd95387644": School.THE_6371_FE9_CB6367_ACD95387644
+});
+
+enum Type { CUSTOM }
+
+final typeValues = EnumValues({"custom": Type.CUSTOM});
 
 class Class {
+  String id;
+  int grade;
+  String div;
+  School school;
+  int v;
+  String classTeacher;
+
   Class({
     required this.id,
     required this.grade,
@@ -198,13 +215,6 @@ class Class {
     required this.v,
     required this.classTeacher,
   });
-
-  String id;
-  int grade;
-  String div;
-  School school;
-  int v;
-  String classTeacher;
 
   factory Class.fromJson(Map<String, dynamic> json) => Class(
         id: json["_id"],
@@ -226,6 +236,18 @@ class Class {
 }
 
 class Subject {
+  String id;
+  String student;
+  Subsubject subject;
+  List<String> activityStatus;
+  List<dynamic> recClassStatus;
+  List<String> animatedVideoStatus;
+  List<dynamic> assignmentsStatus;
+  int v;
+  List<String> gameStatus;
+  List<String> notesStatus;
+  List<String> qaStatus;
+
   Subject({
     required this.id,
     required this.student,
@@ -239,18 +261,6 @@ class Subject {
     required this.notesStatus,
     required this.qaStatus,
   });
-
-  String id;
-  String student;
-  Subsubject subject;
-  List<String> activityStatus;
-  List<dynamic> recClassStatus;
-  List<String> animatedVideoStatus;
-  List<dynamic> assignmentsStatus;
-  int v;
-  List<String> gameStatus;
-  List<String> notesStatus;
-  List<String> qaStatus;
 
   factory Subject.fromJson(Map<String, dynamic> json) => Subject(
         id: json["_id"],
@@ -287,6 +297,24 @@ class Subject {
 }
 
 class Subsubject {
+  Status status;
+  String id;
+  String name;
+  int grade;
+  School school;
+  List<Subsubject> subSubjects;
+  Img image;
+  List<Note> notes;
+  List<Note> qa;
+  List<Activity> activity;
+  List<Game> game;
+  List<Activity> recClass;
+  List<Activity> animatedVideo;
+  List<dynamic> lessons;
+  List<dynamic> assignments;
+  int v;
+  bool public;
+
   Subsubject({
     required this.status,
     required this.id,
@@ -306,24 +334,6 @@ class Subsubject {
     required this.v,
     required this.public,
   });
-
-  Status status;
-  String id;
-  String name;
-  int grade;
-  School school;
-  List<Subsubject> subSubjects;
-  Img image;
-  List<Note> notes;
-  List<Note> qa;
-  List<Activity> activity;
-  List<Game> game;
-  List<Activity> recClass;
-  List<Activity> animatedVideo;
-  List<dynamic> lessons;
-  List<dynamic> assignments;
-  int v;
-  bool public;
 
   factory Subsubject.fromJson(Map<String, dynamic> json) => Subsubject(
         status: Status.fromJson(json["status"]),
@@ -372,15 +382,15 @@ class Subsubject {
 }
 
 class Activity {
+  String name;
+  String video;
+  String image;
+
   Activity({
     required this.name,
     required this.video,
     required this.image,
   });
-
-  String name;
-  String video;
-  String image;
 
   factory Activity.fromJson(Map<String, dynamic> json) => Activity(
         name: json["Name"],
@@ -396,13 +406,13 @@ class Activity {
 }
 
 class Game {
+  String name;
+  String url;
+
   Game({
     required this.name,
     required this.url,
   });
-
-  String name;
-  String url;
 
   factory Game.fromJson(Map<String, dynamic> json) => Game(
         name: json["Name"],
@@ -416,13 +426,13 @@ class Game {
 }
 
 class Note {
+  String name;
+  Img file;
+
   Note({
     required this.name,
     required this.file,
   });
-
-  String name;
-  Img file;
 
   factory Note.fromJson(Map<String, dynamic> json) => Note(
         name: json["name"],
@@ -436,13 +446,13 @@ class Note {
 }
 
 class Status {
+  dynamic teacherId;
+  bool isSelected;
+
   Status({
     this.teacherId,
     required this.isSelected,
   });
-
-  dynamic teacherId;
-  bool isSelected;
 
   factory Status.fromJson(Map<String, dynamic> json) => Status(
         teacherId: json["teacherId"],

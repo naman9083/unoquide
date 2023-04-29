@@ -83,6 +83,8 @@ class _ChangePasswordState extends State<ChangePassword> {
               child: Container(
             height: MediaQuery.of(context).size.height * 0.9,
             width: MediaQuery.of(context).size.width * 0.5,
+            //margin top
+            margin: const EdgeInsets.only(top: 20),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.white,

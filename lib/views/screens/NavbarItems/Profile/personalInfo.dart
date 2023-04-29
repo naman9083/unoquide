@@ -11,12 +11,12 @@ class PersonalInfo extends StatefulWidget {
 }
 
 class _PersonalInfoState extends State<PersonalInfo> {
-  String name = "User Name";
-  String admissionNumber = "Admission Number";
-  String dob = "01 January 2000";
-  String fatherName = "Father's Name";
-  String motherName = "Mother's Name";
-  String bloodGroup = "Blood Group";
+  String? name;
+  String? admissionNumber;
+  String? dob;
+  String? fatherName;
+  String? motherName;
+  String? bloodGroup;
   bool loading = true;
 
   @override
@@ -73,30 +73,26 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 InkWell(
                   onTap: () {},
                   child: InfoItem(
-                    textHeading: 'NAME',
-                    textDesc: name,
-                  ),
+                      textHeading: 'NAME', textDesc: name ?? "User Name"),
                 ),
                 InfoItem(
-                  textHeading: 'Admission Number',
-                  textDesc: admissionNumber,
-                ),
+                    textHeading: 'Admission Number',
+                    textDesc: admissionNumber ?? "Admission Number"),
                 InfoItem(
                   textHeading: 'D.O.B',
-                  textDesc: dob,
+                  textDesc: dob ?? "01 January 2000",
                 ),
                 InfoItem(
                   textHeading: 'FATHER\'S NAME',
-                  textDesc: fatherName,
+                  textDesc: fatherName ?? "Father's Name",
                 ),
                 InfoItem(
                   textHeading: 'MOTHER\'S NAME',
-                  textDesc: motherName,
+                  textDesc: motherName ?? "Mother's Name",
                 ),
                 InfoItem(
-                  textHeading: 'BLOOD GROUP',
-                  textDesc: bloodGroup,
-                ),
+                    textHeading: 'BLOOD GROUP',
+                    textDesc: bloodGroup ?? "Blood Group"),
                 const SizedBox(
                   height: 34,
                 ),

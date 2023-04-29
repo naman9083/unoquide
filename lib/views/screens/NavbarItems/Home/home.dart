@@ -11,21 +11,21 @@ import 'package:unoquide/views/screens/NavbarItems/Subject/subjectCourses.dart';
 import '../../../../services/studentData.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key? key, this.authToken}) : super(key: key);
+  final String? authToken;
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  String name = 'Student';
-  String classs = '3A';
-  String admissionNo = '1234';
-  String picUrl =
-      'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png';
+  String? name;
+  String? classs;
+  String? admissionNo;
+  String? picUrl;
 
   bool loading = true;
-  List<Notifis> notifications = [];
+  List<Notify> notifications = [];
   setStateIfMounted(f) {
     if (mounted) setState(f);
   }
@@ -34,8 +34,9 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getTokenFromGlobal().then((value) {
-      if (value.isNotEmpty) {
+      if (value != null) {
         getStudentData(value).then((value) {
+          print(value.schoolName);
           putStudentToGlobal(student: value);
           setStateIfMounted(() {
             loading = false;
@@ -47,8 +48,6 @@ class _HomeState extends State<Home> {
             notifications = value.notifications;
           });
           putStudentToGlobal(student: value);
-
-          // print(value);
         });
       }
     });
@@ -88,7 +87,7 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            "Hello $name !",
+                            name == null ? "Hello !" : "Hello $name !",
                             style: const TextStyle(
                               color: blackColor,
                               fontFamily: 'Raleway',
@@ -116,7 +115,9 @@ class _HomeState extends State<Home> {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Class: $classs\nAdmission No: $admissionNo",
+                                  classs == null
+                                      ? "Class: 0\nAdmission No: 0"
+                                      : "Class: $classs\nAdmission No: $admissionNo",
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     color: blackColor,
@@ -173,7 +174,8 @@ class _HomeState extends State<Home> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.network(
-                            picUrl,
+                            picUrl ??
+                                "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png",
                             height: 120,
                             width: 120,
                             fit: BoxFit.fill,

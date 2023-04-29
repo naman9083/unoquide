@@ -15,6 +15,7 @@ Future<Student> getStudentData(String authToken) async {
   });
   if (response.statusCode == 200) {
     return Student.fromJson(jsonDecode(response.body));
+    print(response.body);
   } else {
     throw Exception('Failed to create post');
   }

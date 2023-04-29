@@ -17,16 +17,7 @@ class GamesA extends StatefulWidget {
 
 class _GamesAState extends State<GamesA> {
   List<Game> notes = [];
-  String Scho = "School Name";
   _GamesAState(this.notes);
-  @override
-  void initState() {
-    super.initState();
-    getStudentFromGlobal().then((value) => setState(() {
-          Scho = value.schoolName;
-        }));
-    print(notes.length);
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -17,16 +17,12 @@ class Activites extends StatefulWidget {
 }
 
 class _ActivitesState extends State<Activites> {
-  List<Activity> notes = [];
-  String Scho = "School Name";
+  List<Activity> notes;
+
   _ActivitesState(this.notes);
   @override
   void initState() {
     super.initState();
-    getStudentFromGlobal().then((value) => setState(() {
-          Scho = value.schoolName;
-        }));
-    print(notes.length);
   }
 
   @override

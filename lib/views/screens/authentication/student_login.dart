@@ -28,10 +28,12 @@ class _StudentLoginState extends State<StudentLogin> {
       });
       student_login(_emailController.text, _passwordController.text)
           .then((value) {
+        print(value.token);
         if (value.message == "Logged in successfully") {
           setState(() {
             isLoading = false;
             authToken = value.token?.split(' ')[1];
+            putTokenToGlobal(token: authToken);
           });
           Fluttertoast.showToast(
               msg: 'Login Successful',
@@ -42,7 +44,6 @@ class _StudentLoginState extends State<StudentLogin> {
               textColor: Colors.white,
               fontSize: 16.0);
 
-          putTokenToGlobal(token: value.token?.split(" ")[1]);
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         } else {
           setState(() {
@@ -129,25 +130,27 @@ class _StudentLoginState extends State<StudentLogin> {
                                             255, 217, 217, 217),
                                         borderRadius:
                                             BorderRadius.circular(30)),
-                                    child: Container(
-                                      child: TextFormField(
-                                        controller: _emailController,
-                                        decoration: InputDecoration(
-                                            contentPadding:
-                                                const EdgeInsets.only(
-                                                    top: 2, left: 65),
-                                            hintStyle: const TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 20,
-                                            ),
-                                            hintText: 'Student UID',
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        30.0))),
-                                      ),
+                                    child: TextFormField(
+                                      controller: _emailController,
+                                      //close keyboad on completeing 4 characters
+                                      onFieldSubmitted: (value) {
+                                        if (value.length == 4) {
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                      },
+                                      decoration: InputDecoration(
+                                          contentPadding: const EdgeInsets.only(
+                                              top: 2, left: 65),
+                                          hintStyle: const TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 20,
+                                          ),
+                                          hintText: 'Student UID',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0))),
                                     ),
                                   ),
                                   const SizedBox(
