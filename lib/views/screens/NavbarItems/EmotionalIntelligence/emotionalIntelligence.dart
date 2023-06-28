@@ -349,7 +349,7 @@ class YoutubeAndPdfIframe extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 2,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(top: 50, bottom: 10.0, right: 10.0),
             child: PDF(

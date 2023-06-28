@@ -25,7 +25,7 @@ class _GamesAState extends State<GamesA> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.16,
+          height: MediaQuery.of(context).size.height * .1,
         ),
         const Center(
           child: Text(
@@ -58,7 +58,7 @@ class _GamesAState extends State<GamesA> {
               return InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WebV(id: notes[index].url)));
+                      builder: (context) => WebV(id: notes[index].url!)));
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -75,7 +75,7 @@ class _GamesAState extends State<GamesA> {
                       ),
                     ],
                   ),
-                  child: Text(notes[index].name,
+                  child: Text(notes[index].name!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: whiteColor,

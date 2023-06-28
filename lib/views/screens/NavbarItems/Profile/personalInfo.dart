@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unoquide/config/shared-services.dart';
 import 'package:unoquide/constants/constants.dart';
+import 'package:unoquide/services/studentData.dart';
 import 'package:unoquide/utils/common/personalItem.dart';
 
 class PersonalInfo extends StatefulWidget {
@@ -22,20 +23,19 @@ class _PersonalInfoState extends State<PersonalInfo> {
   @override
   void initState() {
     super.initState();
-    getStudentFromGlobal().then((value) {
-      setState(() {
-        name = "${value.firstName} ${value.lastName}";
-        admissionNumber = value.admNo;
-        dob = getDOB(value.dob);
-        print(dob);
-        fatherName = value.parents.isNotEmpty
-            ? "${value.parents[0].firstName} ${value.parents[0].lastName}"
-            : "Father's Name";
+    getTokenFromGlobal()
+        .then((value) => getStudentData(value).then((value) => setState(() {
+              name = "${value.firstName} ${value.lastName}";
+              admissionNumber = value.admNo;
+              dob = getDOB(value.dob);
+              print(dob);
+              fatherName = value.parents!.isNotEmpty
+                  ? "${value.parents![0].firstName} ${value.parents![0].lastName}"
+                  : "Father's Name";
 
-        bloodGroup = value.bloodGroup;
-        loading = false;
-      });
-    });
+              bloodGroup = value.bloodGroup;
+              loading = false;
+            })));
   }
 
   @override
@@ -48,9 +48,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .16,
-                ),
+                SizedBox(height: MediaQuery.of(context).size.height * .1),
                 const Text(
                   'Personal Information',
                   style: TextStyle(

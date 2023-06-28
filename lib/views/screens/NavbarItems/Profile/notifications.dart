@@ -30,7 +30,7 @@ class _NotificationsState extends State<Notifications> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height * .16,
+            height: MediaQuery.of(context).size.height * .1,
           ),
           const Text(
             "Notifications",
@@ -40,21 +40,49 @@ class _NotificationsState extends State<Notifications> {
                 fontWeight: bold2,
                 fontFamily: 'Raleway'),
           ),
-          const SizedBox(
-            height: 20,
-          ),
           Expanded(
               child: ListView.builder(
             itemCount: notifications?.length,
             itemBuilder: (BuildContext context, int index) {
               return Align(
                 alignment: Alignment.centerLeft,
-                child: Text("\t\t\t\u2022 ${notifications?[index].text}\n",
-                    style: const TextStyle(
-                        color: blackColor,
-                        fontSize: 20,
-                        fontWeight: bold,
-                        fontFamily: 'Raleway')),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: ListTile(
+                        leading: const Icon(
+                          Icons.notifications,
+                          color: Colors.greenAccent,
+                        ),
+                        title: Text(
+                          notifications![index].title ?? "No Title",
+                          style: const TextStyle(
+                              color: blackColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Raleway'),
+                        ),
+                        subtitle: Text(
+                          notifications![index].text == null
+                              ? "No Text"
+                              : notifications![index].text!,
+                          style: const TextStyle(
+                              color: blackColor,
+                              fontSize: 15,
+                              fontFamily: 'Raleway'),
+                        ),
+                        trailing: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.redAccent,
+                          ),
+                        )),
+                  ),
+                ),
               );
             },
           ))

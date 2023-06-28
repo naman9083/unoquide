@@ -20,14 +20,6 @@ class _RecLecturesState extends State<RecLectures> {
   List<Activity> notes = [];
   String Scho = "School Name";
   _RecLecturesState(this.notes);
-  @override
-  void initState() {
-    super.initState();
-    getStudentFromGlobal().then((value) => setState(() {
-          Scho = value.schoolName;
-        }));
-    print(notes.length);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +27,7 @@ class _RecLecturesState extends State<RecLectures> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.14,
+          height: MediaQuery.of(context).size.height * .1,
         ),
         const Center(
           child: Text(
@@ -69,7 +61,7 @@ class _RecLecturesState extends State<RecLectures> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => YoutubeI(
-                            id: _getYoutubeVideoIdByURL(notes[index].video),
+                            id: _getYoutubeVideoIdByURL(notes[index].video!),
                           )));
                 },
                 child: Container(
@@ -77,7 +69,7 @@ class _RecLecturesState extends State<RecLectures> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                          "https://img.youtube.com/vi/${_getYoutubeVideoIdByURL(notes[index].video)}/sddefault.jpg"),
+                          "https://img.youtube.com/vi/${_getYoutubeVideoIdByURL(notes[index].video!)}/sddefault.jpg"),
                       fit: BoxFit.fill,
                     ),
                     color: Color(0xFF2a9d8f),
@@ -92,7 +84,7 @@ class _RecLecturesState extends State<RecLectures> {
                       ),
                     ],
                   ),
-                  child: Text(notes[index].name,
+                  child: Text(notes[index].name!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: whiteColor,

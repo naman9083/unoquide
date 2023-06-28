@@ -8,7 +8,7 @@ Future<StudentLogin> student_login(String email, String password) async {
   String url = "$baseURL/student/Login";
   var response = await http.post(Uri.parse(url),
       headers: {"Content-Type": "application/json"},
-      body: jsonEncode({"admNo": email, "password": password}));
+      body: jsonEncode({"email": email, "password": password}));
 
   return StudentLogin.fromJson(jsonDecode(response.body));
 }

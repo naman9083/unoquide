@@ -20,9 +20,7 @@ class _StatisticsState extends State<Statistics> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(
-            height: height * .16,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * .1),
           const Text(
             'Statistics',
             style: TextStyle(

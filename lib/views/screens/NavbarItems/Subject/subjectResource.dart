@@ -24,15 +24,6 @@ class SubjectR extends StatefulWidget {
 class _SubjectRState extends State<SubjectR> {
   Subject subjectData;
   _SubjectRState(this.subjectData);
-  String SchoolName = "School Name";
-
-  @override
-  void initState() {
-    getStudentFromGlobal().then((value) => setState(() {
-          SchoolName = value.schoolName;
-        }));
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +31,12 @@ class _SubjectRState extends State<SubjectR> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          SchoolName,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 30,
-              fontWeight: bold,
-              fontFamily: 'Raleway'),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .1,
         ),
-
         Center(
           child: Text(
-            subjectData?.subject.name as String,
+            subjectData.subject.name!,
             style: const TextStyle(
                 color: blackColor,
                 fontSize: 40,
@@ -64,8 +49,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Notes(
-                      notes: subjectData.subject.notes,
-                      subjectName: subjectData.subject.name,
+                      notes: subjectData.subject.notes!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(
@@ -81,8 +66,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => QuesAns(
-                      QA: subjectData.subject.qa,
-                      subjectName: subjectData.subject.name,
+                      QA: subjectData.subject.qa!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(
@@ -99,8 +84,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Activites(
-                      notes: subjectData.subject.activity,
-                      subjectName: subjectData.subject.name,
+                      notes: subjectData.subject.activity!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(
@@ -117,8 +102,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => GamesA(
-                      notes: subjectData.subject.game,
-                      subjectName: subjectData.subject.name,
+                      notes: subjectData.subject.game!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(
@@ -135,8 +120,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => RecLectures(
-                      notes: subjectData.subject.recClass,
-                      subjectName: subjectData.subject.name,
+                      notes: subjectData.subject.recClass!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(
@@ -153,8 +138,8 @@ class _SubjectRState extends State<SubjectR> {
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => AnimatedVideos(
-                      notes: subjectData.subject.animatedVideo,
-                      subjectName: subjectData.subject.name,
+                      notes: subjectData.subject.animatedVideo!,
+                      subjectName: subjectData.subject.name!,
                     )));
           },
           child: const Text(

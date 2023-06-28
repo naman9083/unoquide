@@ -4,29 +4,30 @@
 
 import 'dart:convert';
 
-Student studentFromJson(String str) => Student.fromJson(json.decode(str));
+Student studentFromJson(String? str) => Student.fromJson(json.decode(str!));
 
-String studentToJson(Student data) => json.encode(data.toJson());
+String? studentToJson(Student data) => json.encode(data.toJson());
 
 class Student {
-  String id;
-  String firstName;
-  String lastName;
-  String admNo;
-  Class studentClass;
+  String? id;
+  String? firstName;
+  String? lastName;
+  String? admNo;
+  Class? studentClass;
   DateTime dob;
-  List<Subject> subjects;
-  List<dynamic> parents;
-  String bloodGroup;
-  Img image;
-  List<dynamic> documents;
-  int tuitionFee;
-  int transportFee;
-  int labFee;
-  int v;
-  String email;
+  List<Subject>? subjects;
+  List<Parent>? parents;
+  String? bloodGroup;
+  Img? image;
+  List<dynamic>? documents;
+  int? tuitionFee;
+  int? transportFee;
+  int? labFee;
+  int? v;
+  String? email;
   List<Notify> notifications;
-  String schoolName;
+  String? schoolName;
+  Img? schoolLogo;
 
   Student({
     required this.id,
@@ -47,6 +48,7 @@ class Student {
     required this.email,
     required this.notifications,
     required this.schoolName,
+    required this.schoolLogo,
   });
 
   factory Student.fromJson(Map<String, dynamic> json) => Student(
@@ -58,7 +60,8 @@ class Student {
         dob: DateTime.parse(json["dob"]),
         subjects: List<Subject>.from(
             json["subjects"].map((x) => Subject.fromJson(x))),
-        parents: List<dynamic>.from(json["parents"].map((x) => x)),
+        parents:
+            List<Parent>.from(json["parents"].map((x) => Parent.fromJson(x))),
         bloodGroup: json["bloodGroup"],
         image: Img.fromJson(json["image"]),
         documents: List<dynamic>.from(json["documents"].map((x) => x)),
@@ -70,6 +73,7 @@ class Student {
         notifications: List<Notify>.from(
             json["notifications"].map((x) => Notify.fromJson(x))),
         schoolName: json["schoolName"],
+        schoolLogo: Img.fromJson(json["schoolLogo"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -77,13 +81,13 @@ class Student {
         "firstName": firstName,
         "lastName": lastName,
         "admNo": admNo,
-        "class": studentClass.toJson(),
+        "class": studentClass?.toJson(),
         "dob": dob.toIso8601String(),
-        "subjects": List<dynamic>.from(subjects.map((x) => x.toJson())),
-        "parents": List<dynamic>.from(parents.map((x) => x)),
+        "subjects": List<dynamic>.from(subjects!.map((x) => x.toJson())),
+        "parents": List<dynamic>.from(parents!.map((x) => x.toJson())),
         "bloodGroup": bloodGroup,
-        "image": image.toJson(),
-        "documents": List<dynamic>.from(documents.map((x) => x)),
+        "image": image!.toJson(),
+        "documents": List<dynamic>.from(documents!.map((x) => x)),
         "TuitionFee": tuitionFee,
         "TransportFee": transportFee,
         "LabFee": labFee,
@@ -92,13 +96,14 @@ class Student {
         "notifications":
             List<dynamic>.from(notifications.map((x) => x.toJson())),
         "schoolName": schoolName,
+        "schoolLogo": schoolLogo!.toJson(),
       };
 }
 
 class Img {
-  String eTag;
-  String location;
-  String key;
+  String? eTag;
+  String? location;
+  String? key;
   Bucket bucket;
   String? imageKey;
 
@@ -114,7 +119,7 @@ class Img {
         eTag: json["ETag"],
         location: json["Location"],
         key: json["Key"],
-        bucket: bucketValues.map[json["Bucket"]]!,
+        bucket: bucketValues.map![json["Bucket"]]!,
         imageKey: json["key"],
       );
 
@@ -133,81 +138,120 @@ final bucketValues =
     EnumValues({"uno-guide-bucket-0": Bucket.UNO_GUIDE_BUCKET_0});
 
 class Notify {
-  String id;
+  String? id;
+  String? sender;
   List<String> receiverId;
-  School senderId;
-  String title;
-  String text;
-  bool active;
-  List<Type> type;
+  String? senderId;
+  String? title;
+  String? text;
+  bool? active;
+  List<String> type;
   DateTime createdAt;
   DateTime updatedAt;
-  int v;
-  String? sender;
+  int? v;
+  String? meetingId;
+  String? meetingName;
 
   Notify({
     required this.id,
+    required this.sender,
     required this.receiverId,
     required this.senderId,
     required this.title,
-    required this.text,
+    this.text,
     required this.active,
     required this.type,
     required this.createdAt,
     required this.updatedAt,
     required this.v,
-    this.sender,
+    this.meetingId,
+    this.meetingName,
   });
 
   factory Notify.fromJson(Map<String, dynamic> json) => Notify(
         id: json["_id"],
+        sender: json["sender"],
         receiverId: List<String>.from(json["receiver_id"].map((x) => x)),
-        senderId: schoolValues.map[json["sender_id"]]!,
+        senderId: json["sender_id"],
         title: json["title"],
         text: json["text"],
         active: json["active"],
-        type: List<Type>.from(json["type"].map((x) => typeValues.map[x]!)),
+        type: List<String>.from(json["type"].map((x) => x)),
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
-        sender: json["sender"],
+        meetingId: json["meetingId"],
+        meetingName: json["meetingName"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
+        "sender": sender,
         "receiver_id": List<dynamic>.from(receiverId.map((x) => x)),
-        "sender_id": schoolValues.reverse[senderId],
+        "sender_id": senderId,
         "title": title,
         "text": text,
         "active": active,
-        "type": List<dynamic>.from(type.map((x) => typeValues.reverse[x])),
+        "type": List<dynamic>.from(type.map((x) => x)),
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
-        "sender": sender,
+        "meetingId": meetingId,
+        "meetingName": meetingName,
       };
 }
 
-enum School { THE_63275848690_AC78_EFD493_FCD, THE_6371_FE9_CB6367_ACD95387644 }
+class Parent {
+  String? id;
+  String? firstName;
+  String? lastName;
+  String? image;
+  String? email;
+  List<String> children;
+  int? v;
 
-final schoolValues = EnumValues({
-  "63275848690ac78efd493fcd": School.THE_63275848690_AC78_EFD493_FCD,
-  "6371fe9cb6367acd95387644": School.THE_6371_FE9_CB6367_ACD95387644
-});
+  Parent({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.image,
+    required this.email,
+    required this.children,
+    required this.v,
+  });
 
-enum Type { CUSTOM }
+  factory Parent.fromJson(Map<String, dynamic> json) => Parent(
+        id: json["_id"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        image: json["image"],
+        email: json["email"],
+        children: List<String>.from(json["children"].map((x) => x)),
+        v: json["__v"],
+      );
 
-final typeValues = EnumValues({"custom": Type.CUSTOM});
+  Map<String, dynamic> toJson() => {
+        "_id": id,
+        "firstName": firstName,
+        "lastName": lastName,
+        "image": image,
+        "email": email,
+        "children": List<dynamic>.from(children.map((x) => x)),
+        "__v": v,
+      };
+}
 
 class Class {
-  String id;
-  int grade;
-  String div;
-  School school;
-  int v;
-  String classTeacher;
+  List<dynamic>? teachers;
+  String? id;
+  int? grade;
+  String? div;
+  String? school;
+  int? v;
+  String? classTeacher;
 
   Class({
+    required this.teachers,
     required this.id,
     required this.grade,
     required this.div,
@@ -217,38 +261,41 @@ class Class {
   });
 
   factory Class.fromJson(Map<String, dynamic> json) => Class(
+        teachers: List<dynamic>.from(json["teachers"].map((x) => x)),
         id: json["_id"],
         grade: json["grade"],
         div: json["div"],
-        school: schoolValues.map[json["school"]]!,
+        school: json["school"],
         v: json["__v"],
         classTeacher: json["classTeacher"],
       );
 
   Map<String, dynamic> toJson() => {
+        "teachers": List<dynamic>.from(teachers!.map((x) => x)),
         "_id": id,
         "grade": grade,
         "div": div,
-        "school": schoolValues.reverse[school],
+        "school": school,
         "__v": v,
         "classTeacher": classTeacher,
       };
 }
 
 class Subject {
-  String id;
-  String student;
-  Subsubject subject;
+  List<dynamic> qaStatus;
+  String? id;
+  String? student;
+  SubjectSubject subject;
   List<String> activityStatus;
   List<dynamic> recClassStatus;
-  List<String> animatedVideoStatus;
+  List<dynamic> animatedVideoStatus;
   List<dynamic> assignmentsStatus;
-  int v;
-  List<String> gameStatus;
+  int? v;
   List<String> notesStatus;
-  List<String> qaStatus;
+  List<String> gameStatus;
 
   Subject({
+    required this.qaStatus,
     required this.id,
     required this.student,
     required this.subject,
@@ -257,29 +304,29 @@ class Subject {
     required this.animatedVideoStatus,
     required this.assignmentsStatus,
     required this.v,
-    required this.gameStatus,
     required this.notesStatus,
-    required this.qaStatus,
+    required this.gameStatus,
   });
 
   factory Subject.fromJson(Map<String, dynamic> json) => Subject(
+        qaStatus: List<dynamic>.from(json["qaStatus"].map((x) => x)),
         id: json["_id"],
         student: json["student"],
-        subject: Subsubject.fromJson(json["subject"]),
+        subject: SubjectSubject.fromJson(json["subject"]),
         activityStatus: List<String>.from(json["activityStatus"].map((x) => x)),
         recClassStatus:
             List<dynamic>.from(json["recClassStatus"].map((x) => x)),
         animatedVideoStatus:
-            List<String>.from(json["animatedVideoStatus"].map((x) => x)),
+            List<dynamic>.from(json["animatedVideoStatus"].map((x) => x)),
         assignmentsStatus:
             List<dynamic>.from(json["assignmentsStatus"].map((x) => x)),
         v: json["__v"],
-        gameStatus: List<String>.from(json["gameStatus"].map((x) => x)),
         notesStatus: List<String>.from(json["notesStatus"].map((x) => x)),
-        qaStatus: List<String>.from(json["qaStatus"].map((x) => x)),
+        gameStatus: List<String>.from(json["gameStatus"].map((x) => x)),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic>? toJson() => {
+        "qaStatus": List<dynamic>.from(qaStatus.map((x) => x)),
         "_id": id,
         "student": student,
         "subject": subject.toJson(),
@@ -290,32 +337,31 @@ class Subject {
         "assignmentsStatus":
             List<dynamic>.from(assignmentsStatus.map((x) => x)),
         "__v": v,
-        "gameStatus": List<dynamic>.from(gameStatus.map((x) => x)),
         "notesStatus": List<dynamic>.from(notesStatus.map((x) => x)),
-        "qaStatus": List<dynamic>.from(qaStatus.map((x) => x)),
+        "gameStatus": List<dynamic>.from(gameStatus.map((x) => x)),
       };
 }
 
-class Subsubject {
-  Status status;
-  String id;
-  String name;
-  int grade;
-  School school;
-  List<Subsubject> subSubjects;
-  Img image;
-  List<Note> notes;
-  List<Note> qa;
-  List<Activity> activity;
-  List<Game> game;
-  List<Activity> recClass;
-  List<Activity> animatedVideo;
-  List<dynamic> lessons;
-  List<dynamic> assignments;
-  int v;
-  bool public;
+class SubjectSubject {
+  Status? status;
+  String? id;
+  String? name;
+  int? grade;
+  String? school;
+  List<dynamic>? subSubjects;
+  Img? image;
+  List<Assignment>? notes;
+  List<Assignment>? qa;
+  List<Activity>? activity;
+  List<Game>? game;
+  List<Activity>? recClass;
+  List<Activity>? animatedVideo;
+  List<dynamic>? lessons;
+  List<Assignment>? assignments;
+  int? v;
+  bool? public;
 
-  Subsubject({
+  SubjectSubject({
     required this.status,
     required this.id,
     required this.name,
@@ -335,17 +381,18 @@ class Subsubject {
     required this.public,
   });
 
-  factory Subsubject.fromJson(Map<String, dynamic> json) => Subsubject(
+  factory SubjectSubject.fromJson(Map<String, dynamic> json) => SubjectSubject(
         status: Status.fromJson(json["status"]),
         id: json["_id"],
         name: json["name"],
         grade: json["grade"],
-        school: schoolValues.map[json["school"]]!,
-        subSubjects: List<Subsubject>.from(
-            json["subSubjects"].map((x) => Subsubject.fromJson(x))),
+        school: json["school"],
+        subSubjects: List<dynamic>.from(json["subSubjects"].map((x) => x)),
         image: Img.fromJson(json["image"]),
-        notes: List<Note>.from(json["notes"].map((x) => Note.fromJson(x))),
-        qa: List<Note>.from(json["qa"].map((x) => Note.fromJson(x))),
+        notes: List<Assignment>.from(
+            json["notes"].map((x) => Assignment.fromJson(x))),
+        qa: List<Assignment>.from(
+            json["qa"].map((x) => Assignment.fromJson(x))),
         activity: List<Activity>.from(
             json["activity"].map((x) => Activity.fromJson(x))),
         game: List<Game>.from(json["game"].map((x) => Game.fromJson(x))),
@@ -354,37 +401,38 @@ class Subsubject {
         animatedVideo: List<Activity>.from(
             json["animatedVideo"].map((x) => Activity.fromJson(x))),
         lessons: List<dynamic>.from(json["lessons"].map((x) => x)),
-        assignments: List<dynamic>.from(json["assignments"].map((x) => x)),
+        assignments: List<Assignment>.from(
+            json["assignments"].map((x) => Assignment.fromJson(x))),
         v: json["__v"],
         public: json["public"],
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status.toJson(),
+        "status": status!.toJson(),
         "_id": id,
         "name": name,
         "grade": grade,
-        "school": schoolValues.reverse[school],
-        "subSubjects": List<dynamic>.from(subSubjects.map((x) => x.toJson())),
-        "image": image.toJson(),
-        "notes": List<dynamic>.from(notes.map((x) => x.toJson())),
-        "qa": List<dynamic>.from(qa.map((x) => x.toJson())),
-        "activity": List<dynamic>.from(activity.map((x) => x.toJson())),
-        "game": List<dynamic>.from(game.map((x) => x.toJson())),
-        "recClass": List<dynamic>.from(recClass.map((x) => x.toJson())),
+        "school": school,
+        "subSubjects": List<dynamic>.from(subSubjects!.map((x) => x)),
+        "image": image!.toJson(),
+        "notes": List<dynamic>.from(notes!.map((x) => x.toJson())),
+        "qa": List<dynamic>.from(qa!.map((x) => x.toJson())),
+        "activity": List<dynamic>.from(activity!.map((x) => x.toJson())),
+        "game": List<dynamic>.from(game!.map((x) => x.toJson())),
+        "recClass": List<dynamic>.from(recClass!.map((x) => x.toJson())),
         "animatedVideo":
-            List<dynamic>.from(animatedVideo.map((x) => x.toJson())),
-        "lessons": List<dynamic>.from(lessons.map((x) => x)),
-        "assignments": List<dynamic>.from(assignments.map((x) => x)),
+            List<dynamic>.from(animatedVideo!.map((x) => x.toJson())),
+        "lessons": List<dynamic>.from(lessons!.map((x) => x)),
+        "assignments": List<dynamic>.from(assignments!.map((x) => x.toJson())),
         "__v": v,
         "public": public,
       };
 }
 
 class Activity {
-  String name;
-  String video;
-  String image;
+  String? name;
+  String? video;
+  String? image;
 
   Activity({
     required this.name,
@@ -405,9 +453,29 @@ class Activity {
       };
 }
 
+class Assignment {
+  String? name;
+  Img? file;
+
+  Assignment({
+    required this.name,
+    required this.file,
+  });
+
+  factory Assignment.fromJson(Map<String, dynamic> json) => Assignment(
+        name: json["name"],
+        file: Img.fromJson(json["file"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "file": file!.toJson(),
+      };
+}
+
 class Game {
-  String name;
-  String url;
+  String? name;
+  String? url;
 
   Game({
     required this.name,
@@ -425,29 +493,9 @@ class Game {
       };
 }
 
-class Note {
-  String name;
-  Img file;
-
-  Note({
-    required this.name,
-    required this.file,
-  });
-
-  factory Note.fromJson(Map<String, dynamic> json) => Note(
-        name: json["name"],
-        file: Img.fromJson(json["file"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "file": file.toJson(),
-      };
-}
-
 class Status {
   dynamic teacherId;
-  bool isSelected;
+  bool? isSelected;
 
   Status({
     this.teacherId,
@@ -466,13 +514,13 @@ class Status {
 }
 
 class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
+  Map<String, T>? map;
+  late Map<T, String>? reverseMap;
 
   EnumValues(this.map);
 
   Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
+    reverseMap = map!.map((k, v) => MapEntry(v, k));
+    return reverseMap!;
   }
 }

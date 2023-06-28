@@ -10,7 +10,7 @@ const FontWeight bold = FontWeight.w700;
 const FontWeight bold2 = FontWeight.w900;
 const FontWeight bold3 = FontWeight.w900;
 String dyteURL = "https://api.cluster.dyte.in/v1";
-String baseURL = "https://backend.uno-guide.com";
+String baseURL = "https://backend.unoguide.in";
 
 enum Mode {
   groupCall,

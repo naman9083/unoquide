@@ -33,7 +33,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
   void initState() {
     getTokenFromGlobal().then((value) => getStudentData(value).then((value) {
           setStateIfMounted(() {
-            listSubject = value.subjects;
+            listSubject = value.subjects!;
             loading = false;
           });
         }));
@@ -51,8 +51,8 @@ class _SubjectCoursesState extends State<SubjectCourses> {
           )
         : Column(
             children: [
-              SizedBox(
-                height: height * .16,
+              const SizedBox(
+                height: 30,
               ),
               Expanded(
                 child: GridView.count(
@@ -87,7 +87,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image.network(
-                                    listSubject[index].subject.image.location,
+                                    listSubject[index].subject.image!.location!,
                                     height: height * 0.5,
                                     width: width * 0.4,
                                     fit: BoxFit.cover,
@@ -105,7 +105,7 @@ class _SubjectCoursesState extends State<SubjectCourses> {
                                 SizedBox(
                                   height: height * 0.1,
                                 ),
-                                Text(listSubject[index].subject.name,
+                                Text(listSubject[index].subject.name!,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         color: blackColor,
@@ -142,20 +142,20 @@ class _SubjectCoursesState extends State<SubjectCourses> {
     } else if (index == 1) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => AnimatedVideos(
-                subjectName: subjectName.subject.name,
-                notes: subjectName.subject.animatedVideo,
+                subjectName: subjectName.subject.name!,
+                notes: subjectName.subject.animatedVideo!,
               )));
     } else if (index == 2) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => GamesA(
-                subjectName: subjectName.subject.name,
-                notes: subjectName.subject.game,
+                subjectName: subjectName.subject.name!,
+                notes: subjectName.subject.game!,
               )));
     } else {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => RecLectures(
-              notes: subjectName.subject.recClass,
-              subjectName: subjectName.subject.name)));
+              notes: subjectName.subject.recClass!,
+              subjectName: subjectName.subject.name!)));
     }
   };
 }

@@ -20,14 +20,14 @@ class AnimatedVideos extends StatefulWidget {
 class _AnimatedVideosState extends State<AnimatedVideos> {
   List<Activity>? notes;
   _AnimatedVideosState(this.notes);
-  @override
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.16,
+          height: MediaQuery.of(context).size.height * .1,
         ),
         const Center(
           child: Text(
@@ -61,7 +61,7 @@ class _AnimatedVideosState extends State<AnimatedVideos> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => YoutubeI(
-                            id: _getYoutubeVideoIdByURL(notes![index].video),
+                            id: _getYoutubeVideoIdByURL(notes![index].video!),
                           )));
                 },
                 child: Container(
@@ -69,7 +69,7 @@ class _AnimatedVideosState extends State<AnimatedVideos> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
-                          "https://img.youtube.com/vi/${_getYoutubeVideoIdByURL(notes![index].video)}/sddefault.jpg"),
+                          "https://img.youtube.com/vi/${_getYoutubeVideoIdByURL(notes![index].video!)}/sddefault.jpg"),
                       fit: BoxFit.fill,
                     ),
                     color: Color(0xFF2a9d8f),
@@ -84,7 +84,7 @@ class _AnimatedVideosState extends State<AnimatedVideos> {
                       ),
                     ],
                   ),
-                  child: Text(notes![index].name,
+                  child: Text(notes![index].name!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: whiteColor,

@@ -21,12 +21,12 @@ class SplashScreenModel {
       if (value != '') {
         Navigator.pushNamedAndRemoveUntil(
             context, RouteNames.homeScreen, (route) => false);
-        getStudentData(value).then((value) {
-          putStudentToGlobal(student: value);
-
-          print(value.firstName);
-          // print(value);
-        });
+        // getStudentData(value).then((value) {
+        //   putStudentToGlobal(student: value);
+        //
+        //   print(value.firstName);
+        //   // print(value);
+        // });
       } else {
         Navigator.pushNamedAndRemoveUntil(
             context, RouteNames.categoryLoginScreen, (route) => false);

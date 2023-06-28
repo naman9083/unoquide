@@ -11,6 +11,7 @@ void main() {
       .then((_) {
     runApp(const MyApp());
   });
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 class MyApp extends StatelessWidget {

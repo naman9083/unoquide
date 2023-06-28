@@ -61,6 +61,8 @@ class _HomePageState extends State<HomePage> {
   String schoolName = '';
   String picUrl =
       'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png';
+  String schoolPicUrl =
+      'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png';
   @override
   void initState() {
     super.initState();
@@ -74,8 +76,9 @@ class _HomePageState extends State<HomePage> {
                     if (value != null)
                       {
                         setStateIfMounted(() {
-                          schoolName = value.schoolName;
-                          picUrl = value.image.location;
+                          schoolName = value.schoolName!;
+                          picUrl = value.image!.location!;
+                          schoolPicUrl = value.schoolLogo!.location!;
                         })
                       }
                   })
@@ -96,6 +99,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: backgroundColor,
         body: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Column(
               children: [
@@ -126,24 +130,23 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * .85,
-                  width: MediaQuery.of(context).size.width * .11,
+                  // height: MediaQuery.of(context).size.height * .85,
+                  width: MediaQuery.of(context).size.width * .09,
                   margin: const EdgeInsets.only(left: 10),
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Center(
-                    child: ListView(
-                      physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         InkWell(
                           onTap: () {
                             selectTab(0);
-                            print('EQ');
                           },
                           child: const RailIconImage(
                               label: 'EQ',
@@ -151,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                               size: 25),
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 2.5,
                         ),
                         InkWell(
                           onTap: () {
@@ -163,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                               size: 25),
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 2.5,
                         ),
                         InkWell(
                           onTap: () {
@@ -183,9 +186,7 @@ class _HomePageState extends State<HomePage> {
                               imgUrl: 'assets/Icons/games.png',
                               size: 25),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 2.5),
                         InkWell(
                           onTap: () {
                             selectTab(4);
@@ -195,9 +196,7 @@ class _HomePageState extends State<HomePage> {
                               imgUrl: 'assets/Icons/video.png',
                               size: 25),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 2.5),
                         InkWell(
                           onTap: () {
                             selectTab(5);
@@ -207,9 +206,7 @@ class _HomePageState extends State<HomePage> {
                               imgUrl: 'assets/Icons/exam.png',
                               size: 25),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 2.5),
                         InkWell(
                           onTap: () {
                             selectTab(6);
@@ -219,9 +216,7 @@ class _HomePageState extends State<HomePage> {
                               imgUrl: 'assets/Icons/calender.png',
                               size: 25),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 2.5),
                         InkWell(
                           onTap: () {
                             selectTab(7);
@@ -231,9 +226,7 @@ class _HomePageState extends State<HomePage> {
                               imgUrl: 'assets/Icons/profile.png',
                               size: 30),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 2.5),
                       ],
                     ),
                   ),
@@ -255,13 +248,13 @@ class _HomePageState extends State<HomePage> {
                 _buildOffstageNavigator('Calender'),
                 _buildOffstageNavigator('MyProfile'),
                 Container(
-                  // width: MediaQuery.of(context).size.width * .85,
-                  height: MediaQuery.of(context).size.height * .15,
+                  width: MediaQuery.of(context).size.width * .85,
+                  height: MediaQuery.of(context).size.height * .11,
                   color: backgroundColor,
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           schoolName,
@@ -272,198 +265,19 @@ class _HomePageState extends State<HomePage> {
                             fontSize: 40,
                           ),
                         ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ChangePassword()));
-                              },
-                              child: Container(
-                                  height: 40,
-                                  width: 150,
-                                  margin: const EdgeInsets.only(top: 10),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFffdb9c),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      'Change Password',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'Raleway',
-                                        fontWeight: bold,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  )),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          child: Dialog(
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.5),
-                                                    spreadRadius: 5,
-                                                    blurRadius: 7,
-                                                    offset: const Offset(0,
-                                                        3), // changes position of shadow
-                                                  ),
-                                                ],
-                                              ),
-                                              height: 100,
-                                              width: 200,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Text(
-                                                    'Are you sure you want to logout?',
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontFamily: 'Raleway',
-                                                      fontWeight: bold,
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: [
-                                                      InkWell(
-                                                        onTap: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Container(
-                                                            height: 40,
-                                                            width: 120,
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: const Color(
-                                                                  0xFFffdb9c),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                            ),
-                                                            child: const Center(
-                                                              child: Text(
-                                                                'Cancel',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontFamily:
-                                                                      'Raleway',
-                                                                  fontWeight:
-                                                                      bold,
-                                                                  fontSize: 15,
-                                                                ),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 3,
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          logout(context);
-                                                        },
-                                                        child: Container(
-                                                            height: 40,
-                                                            width: 120,
-                                                            margin:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    top: 10),
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: const Color(
-                                                                  0xFFffdb9c),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                            ),
-                                                            child: const Center(
-                                                              child: Text(
-                                                                'Logout',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontFamily:
-                                                                      'Raleway',
-                                                                  fontWeight:
-                                                                      bold,
-                                                                  fontSize: 15,
-                                                                ),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ));
-                                // logout(context);
-                              },
-                              child: Container(
-                                  height: 40,
-                                  width: 120,
-                                  margin: const EdgeInsets.only(top: 10),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFffdb9c),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      'Logout',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'Raleway',
-                                        fontWeight: bold,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  )),
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
-                            CircleAvatar(
-                                radius: 22,
-                                backgroundColor: Colors.white,
-                                backgroundImage: NetworkImage(picUrl ??
-                                    'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png')),
-                          ],
+                        Image.network(
+                          schoolPicUrl ??
+                              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                          height: 50,
+                          width: 50,
+                        ),
+                        InkWell(
+                          onTap: _showPopupMenu,
+                          child: CircleAvatar(
+                              radius: 22,
+                              backgroundColor: Colors.white,
+                              backgroundImage: NetworkImage(picUrl ??
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png')),
                         ),
                       ],
                     ),
@@ -517,5 +331,195 @@ class _HomePageState extends State<HomePage> {
       }
     }
     return isFirstRouteInCurrentTab;
+  }
+
+  void _showPopupMenu() async {
+    await showMenu(
+      context: context,
+      constraints: const BoxConstraints(
+        minWidth: 100,
+        maxWidth: 150,
+        minHeight: 125,
+      ),
+      position: const RelativeRect.fromLTRB(100, 45, 20, 100),
+      color: backgroundColor,
+      shape: ShapeBorder.lerp(
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Color(0xFFd1d5db), width: 5)),
+          RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Color(0xFFd1d5db), width: 5)),
+          1),
+      items: [
+        PopupMenuItem(
+          value: 1,
+          child: Center(
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChangePassword()));
+              },
+              child: Container(
+                  height: 40,
+                  width: 100,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFffdb9c),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Change Password',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Raleway',
+                        fontWeight: bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  )),
+            ),
+          ),
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: Center(
+            child: InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Dialog(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              height: 100,
+                              width: 200,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Are you sure you want to logout?',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Raleway',
+                                      fontWeight: bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                            height: 40,
+                                            width: 120,
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFFffdb9c),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                'Cancel',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: 'Raleway',
+                                                  fontWeight: bold,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                            )),
+                                      ),
+                                      const SizedBox(
+                                        width: 3,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          logout(context);
+                                        },
+                                        child: Container(
+                                            height: 40,
+                                            width: 120,
+                                            margin:
+                                                const EdgeInsets.only(top: 10),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFFffdb9c),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                'Logout',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontFamily: 'Raleway',
+                                                  fontWeight: bold,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ));
+                // logout(context);
+              },
+              child: Container(
+                  height: 40,
+                  width: 100,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFffdb9c),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Logout',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Raleway',
+                        fontWeight: bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                  )),
+            ),
+          ),
+        ),
+      ],
+      elevation: 8.0,
+    ).then((value) {
+// NOTE: even you didnt select item this method will be called with null of value so you should call your call back with checking if value is not null
+
+      if (value != null) print(value);
+    });
   }
 }

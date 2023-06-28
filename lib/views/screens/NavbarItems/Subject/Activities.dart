@@ -1,9 +1,7 @@
-import 'package:fwfh_webview/fwfh_webview.dart';
 import 'package:flutter/material.dart';
 import 'package:unoquide/constants/constants.dart';
 import 'package:unoquide/views/screens/NavbarItems/Subject/Game.dart';
 
-import '../../../../config/shared-services.dart';
 import '../../../../models/studentModel.dart';
 
 class Activites extends StatefulWidget {
@@ -31,7 +29,7 @@ class _ActivitesState extends State<Activites> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.16,
+          height: MediaQuery.of(context).size.height * .1,
         ),
         const Center(
           child: Text(
@@ -64,7 +62,7 @@ class _ActivitesState extends State<Activites> {
               return InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => WebV(id: notes[index].video)));
+                      builder: (context) => WebV(id: notes[index].video!)));
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -81,7 +79,7 @@ class _ActivitesState extends State<Activites> {
                       ),
                     ],
                   ),
-                  child: Text(notes[index].name,
+                  child: Text(notes[index].name!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: whiteColor,

@@ -23,6 +23,7 @@ class _StudentLoginState extends State<StudentLogin> {
   studentLogin() async {
     if (_emailController.text.isNotEmpty &&
         _passwordController.text.isNotEmpty) {
+      putEmailToGlobal(email: _emailController.text);
       setState(() {
         isLoading = true;
       });
@@ -130,27 +131,41 @@ class _StudentLoginState extends State<StudentLogin> {
                                             255, 217, 217, 217),
                                         borderRadius:
                                             BorderRadius.circular(30)),
-                                    child: TextFormField(
-                                      controller: _emailController,
-                                      //close keyboad on completeing 4 characters
-                                      onFieldSubmitted: (value) {
-                                        if (value.length == 4) {
-                                          FocusScope.of(context).unfocus();
-                                        }
-                                      },
-                                      decoration: InputDecoration(
-                                          contentPadding: const EdgeInsets.only(
-                                              top: 2, left: 65),
-                                          hintStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 20,
-                                          ),
-                                          hintText: 'Student UID',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0))),
+                                    child: Center(
+                                      child: TextFormField(
+                                        controller: _emailController,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        onChanged: (value) {
+                                          //last two characters are .in//
+                                          if (value.substring(
+                                                      value.length - 2) ==
+                                                  'in' ||
+                                              value.substring(
+                                                      value.length - 3) ==
+                                                  "com") {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                            errorMaxLines: 2,
+                                            contentPadding:
+                                                const EdgeInsets.only(
+                                              top: 2,
+                                              left: 25,
+                                            ),
+                                            hintStyle: const TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20,
+                                            ),
+                                            hintText: 'Student Email',
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0))),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -165,33 +180,38 @@ class _StudentLoginState extends State<StudentLogin> {
                                             255, 217, 217, 217),
                                         borderRadius:
                                             BorderRadius.circular(30)),
-                                    child: TextFormField(
-                                      obscureText: isVisible,
-                                      controller: _passwordController,
-                                      decoration: InputDecoration(
-                                          suffixIcon: IconButton(
-                                            icon: isVisible
-                                                ? const Icon(
-                                                    Icons.visibility_off)
-                                                : const Icon(Icons.visibility),
-                                            onPressed: () {
-                                              setState(() {
-                                                isVisible = !isVisible;
-                                              });
-                                            },
-                                          ),
-                                          contentPadding: const EdgeInsets.only(
-                                              top: 2, left: 65),
-                                          hintStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 20,
-                                          ),
-                                          hintText: 'Password',
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0))),
+                                    child: Center(
+                                      child: TextFormField(
+                                        obscureText: isVisible,
+                                        controller: _passwordController,
+                                        decoration: InputDecoration(
+                                            suffixIcon: IconButton(
+                                              icon: isVisible
+                                                  ? const Icon(
+                                                      Icons.visibility_off)
+                                                  : const Icon(
+                                                      Icons.visibility),
+                                              onPressed: () {
+                                                setState(() {
+                                                  isVisible = !isVisible;
+                                                });
+                                              },
+                                            ),
+                                            contentPadding:
+                                                const EdgeInsets.only(
+                                                    top: 2, left: 25),
+                                            hintStyle: const TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w900,
+                                              fontSize: 20,
+                                            ),
+                                            hintText: 'Password',
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0))),
+                                      ),
                                     ),
                                   ),
                                 ],

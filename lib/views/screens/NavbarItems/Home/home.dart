@@ -41,9 +41,9 @@ class _HomeState extends State<Home> {
           setStateIfMounted(() {
             loading = false;
             name = value.firstName;
-            classs = "${value.studentClass.grade}${value.studentClass.div}";
+            classs = "${value.studentClass!.grade}${value.studentClass!.div}";
             admissionNo = value.admNo;
-            picUrl = value.image.location;
+            picUrl = value.image!.location;
 
             notifications = value.notifications;
           });
@@ -55,9 +55,9 @@ class _HomeState extends State<Home> {
       if (value == null) return;
       setStateIfMounted(() {
         name = value.firstName;
-        classs = "${value.studentClass.grade}${value.studentClass.div}";
+        classs = "${value.studentClass!.grade}${value.studentClass!.div}";
         admissionNo = value.admNo;
-        picUrl = value.image.location;
+        picUrl = value.image!.location;
 
         notifications = value.notifications;
       });
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
     var width = MediaQuery.of(context).size.width / 1;
     var height = MediaQuery.of(context).size.height / 1.25;
     return loading
-        ? const Center(
+        ? Center(
             child: CircularProgressIndicator(),
           )
         : SingleChildScrollView(
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: height * .16,
+                  height: height * .12,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -372,7 +372,7 @@ class _HomeState extends State<Home> {
                                   padding: const EdgeInsets.all(8),
                                   itemBuilder: (context, index) {
                                     return Text(
-                                      "  ✯ ${notifications[index].text}",
+                                      "  ✯ ${notifications[index].title}",
                                       style: const TextStyle(
                                         color: blackColor,
                                         fontFamily: 'GTN',

@@ -21,6 +21,8 @@ Future<String> getTokenFromGlobal() async {
 Future<void> removeTokenFromGlobal() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.remove('token');
+  await prefs.remove('student');
+  await prefs.remove('email');
 }
 
 Future<void> putParentTokenToGlobal(String? token) async {
@@ -45,6 +47,7 @@ Future<void> removeParentTokenFromGlobal() async {
 
 Future<void> putStudentToGlobal({Student? student}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
+
   await prefs.setString('student', jsonEncode(student));
 }
 
@@ -55,4 +58,22 @@ Future<Student> getStudentFromGlobal() async {
     student = Student.fromJson(jsonDecode(prefs.getString('student')!));
   }
   return student!;
+}
+
+// put email to local storage
+Future<void> putEmailToGlobal({String? email}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  print("Received email: $email");
+  await prefs.setString('email', email!);
+}
+
+Future<String> getEmailFromGlobal() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? email;
+  if (prefs.containsKey('email')) {
+    email = prefs.getString('email')!;
+  }
+  email ??= '';
+  return email;
 }

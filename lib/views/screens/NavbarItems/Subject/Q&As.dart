@@ -10,7 +10,7 @@ import '../../../../models/studentModel.dart';
 class QuesAns extends StatefulWidget {
   QuesAns({Key? key, required this.QA, required this.subjectName})
       : super(key: key);
-  List<Note> QA = [];
+  List<Assignment> QA = [];
   String subjectName;
 
   @override
@@ -22,30 +22,16 @@ class _QuesAnsState extends State<QuesAns> {
       Completer<PDFViewController>();
   final StreamController<String> _pageCountController =
       StreamController<String>();
-  List<Note> QA = [];
-  String Scho = "School Name";
+  List<Assignment> QA = [];
   _QuesAnsState(this.QA);
-  @override
-  void initState() {
-    super.initState();
-    getStudentFromGlobal().then((value) => setState(() {
-          Scho = value.schoolName;
-        }));
-    print(QA.length);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          Scho,
-          style: const TextStyle(
-              color: blackColor,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Raleway'),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .1,
         ),
         const Center(
           child: Text(
@@ -98,7 +84,7 @@ class _QuesAnsState extends State<QuesAns> {
                                 _pageCountController
                                     .add('${currentPage + 1} - $pageCount');
                               }).cachedFromUrl(
-                            QA[index].file.location,
+                            QA[index].file!.location!,
                             placeholder: (progress) => Center(
                               child: CircularProgressIndicator(
                                 value: progress,
@@ -123,7 +109,7 @@ class _QuesAnsState extends State<QuesAns> {
                       ),
                     ],
                   ),
-                  child: Text(QA[index].name,
+                  child: Text(QA[index].name!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: whiteColor,
